@@ -146,7 +146,7 @@ p {
   .contenedor-logo-principal {
     width: 16rem;
     height: 16rem;
-    background-image: url(../img/logo-provisional.png);
+    background-image: url(../img/logo.png);
     background-size: cover;
   }
 
