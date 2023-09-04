@@ -17,8 +17,19 @@
   <body>
     <!-- * Vista 1 -->
     <main class="main-1">
-      <section class="carrusel"></section>
-      
+      <section class="contenedor-carrusel">
+        <article class="carrusel">
+          <img src="img/slide1.png" alt="Carrusel 1" id="carrusel-1">
+          <img src="img/slide2.png" alt="Carrusel 2" id="carrusel-2">
+          <img src="img/slide3.png" alt="Carrusel 3" id="carrusel-3">
+        </article>
+        <nav class="nav-carrusel">
+          <a href="#carrusel-1"></a>
+          <a href="#carrusel-2"></a>
+          <a href="#carrusel-3"></a>
+        </nav>
+      </section>
+
       <div class="contenedor-btn">
         <button class="btn-principal">Saltar</button>
       </div>
@@ -26,7 +37,7 @@
     <!-- * Fin Vista 1 -->
 
     <!-- * Vista 2 -->
-    <main class="main-2">
+    <main class="main-2" id="login-principal">
       <div class="contenedor-logo-principal"></div>
 
       <div class="contenedor-btn-secundario">
@@ -79,11 +90,11 @@
 
       <div class="contenedor-btn">
         <button class="btn-principal">Continuar</button>
-        <a href="#">¿Ya tienes una cuenta? Inicia Sesión</a>
+        <a href="#login-principal">¿Ya tienes una cuenta? Inicia Sesión</a>
       </div>
     </main>
     <!-- * Fin Vista 3 -->
-
+    <script src="https://kit.fontawesome.com/a90d1ac3f5.js" crossorigin="anonymous"></script>
     <script type="module" src="main.js"></script>
   </body>
 </html>
