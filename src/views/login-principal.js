@@ -1,4 +1,4 @@
-export const generateLogin = () => {
+function principalRegister(){
   const mainElement = document.createElement('main');
   mainElement.className = 'main-2';
   mainElement.id = 'login-principal';
@@ -44,7 +44,7 @@ export const generateLogin = () => {
   mainElement.appendChild(contenedorLogoPrincipal);
   mainElement.appendChild(contenedorBtnSecundario);
   mainElement.appendChild(contenedorBtn);
-  
   // Agregar la vista al body
   document.body.appendChild(mainElement);
 };
+export default principalRegister;

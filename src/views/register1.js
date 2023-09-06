@@ -1,4 +1,4 @@
-export const generateRegister = () => {
+function register1() {
   const mainElement = document.createElement('main');
   mainElement.className = 'main-3';
 
@@ -120,6 +120,8 @@ export const generateRegister = () => {
   mainElement.appendChild(contenedorSeleccionMascota);
   mainElement.appendChild(contenedorBtn);
 
-  // Agregar la vista generada al cuerpo del documento
+  // Agregar la vista al body
   document.body.appendChild(mainElement);
 };
+
+export default register1;

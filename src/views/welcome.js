@@ -1,4 +1,4 @@
-export const generateWelcome = () => {
+function welcome(){
   const mainElement = document.createElement('main');
   mainElement.className = 'main-1';
 
@@ -39,6 +39,7 @@ export const generateWelcome = () => {
 
   mainElement.appendChild(sectionElement);
   mainElement.appendChild(divElement);
-
+  // Agregar la vista al body
   document.body.appendChild(mainElement);
 };
+export default welcome;
