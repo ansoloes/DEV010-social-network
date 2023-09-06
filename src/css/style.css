@@ -43,6 +43,7 @@ p {
 @media (max-width: 375px) {
   body {
     font-size: 1.6rem;
+    scroll-snap-type: y mandatory;
   }
   
   /* * Vista 1 */
@@ -50,12 +51,15 @@ p {
     display: flex;
     flex-direction: column;
     padding-bottom: 2.4rem;
+    scroll-snap-align: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100vh;
   }
 
   .contenedor-carrusel {
     width: 100%;
     height: 84.5vh;
-    margin-bottom: 3.2rem;
   }
 
   .contenedor-carrusel {
@@ -119,6 +123,7 @@ p {
     justify-content: center;
     align-items: center;
     padding: 0 2.4rem;
+    z-index: 1;
     width: 100%;
     gap: 2rem;
   }
@@ -131,6 +136,7 @@ p {
     border: none;
     font-size: 1.8rem;
     border-radius: 5rem;
+    cursor: pointer;
   }
   /* * Fin Vista 1 */
 
@@ -140,14 +146,17 @@ p {
     flex-direction: column;
     align-items: center;
     padding: 2.4rem 0;
-    gap: 8.2rem;
+    justify-content: space-between;
+    width: 100%;
+    height: 100vh;
   }
 
   .contenedor-logo-principal {
     width: 16rem;
-    height: 16rem;
+    height: 10.8rem;
     background-image: url(../img/logo.png);
     background-size: cover;
+    background-position: center;
   }
 
   .contenedor-btn-secundario {
@@ -167,6 +176,7 @@ p {
     border: none;
     font-size: 1.8rem;
     border-radius: 5rem;
+    cursor: pointer;
   }
 
   .btn-google {
@@ -180,6 +190,7 @@ p {
     border: .1rem solid;
     background-color: var(--blanco);
     border-radius: 5rem;
+    cursor: pointer;
   }
 
   .btn-google img {
@@ -192,7 +203,9 @@ p {
     padding: 2.4rem;
     display: flex;
     flex-direction: column;
-    gap: 2.4rem;
+    justify-content: space-between;
+    width: 100%;
+    height: 100vh;
   }
 
   .form-datos {
@@ -277,7 +290,17 @@ p {
     flex-direction: column;
     align-items: center;
     padding: 2.4rem;
-    gap: 15rem;
+    justify-content: space-between;
+    width: 100%;
+    height: 100vh;
+  }
+
+  .contenedor-ilustracion-contraseña {
+    width: 16rem;
+    height: 16rem;
+    background-image: url(../img/ilustracion-contraseña.png);
+    background-size: cover;
+    border-radius: 50%;
   }
    
   .form-datos input {
@@ -285,6 +308,25 @@ p {
     border: .1rem solid var(--gris);
     border-radius: .8rem;
   }
-    /* * Fin Vista 4 */
+  /* * Fin Vista 4 */
+
+  /* * Vista 5 */
+  .main-5 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    align-items: center;
+    padding: 2.4rem;
+    justify-content: center;
+    gap: 4.8rem;
+  }
+
+  .main-5 h1 {
+    margin-bottom: 2.4rem;
+    font-weight: 500;
+    color: #00297b;
+  }
+  /* * Fin Vista 5 */
 }
 
