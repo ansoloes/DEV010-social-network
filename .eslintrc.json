@@ -27,7 +27,9 @@
     "jest/no-focused-tests": "error",
     "jest/no-identical-title": "error",
     "jest/prefer-to-have-length": "warn",
+
     "jest/valid-expect": "error",
     "no-plusplus": "off"
-  }
+  },
+  "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
 }
