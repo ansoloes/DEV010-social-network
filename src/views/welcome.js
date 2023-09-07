@@ -1,4 +1,4 @@
-function welcome(){
+function welcome(NavigateTo){
   const mainElement = document.createElement('main');
   mainElement.className = 'main-1';
 
