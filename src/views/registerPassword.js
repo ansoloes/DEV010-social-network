@@ -1,4 +1,4 @@
-export const generateView4 = () => {
+function registerPassword (){
   const mainElement = document.createElement('main');
   mainElement.className = 'main-4';
 
@@ -41,3 +41,5 @@ export const generateView4 = () => {
   // Agregar la vista al body
   document.body.appendChild(mainElement);
 };
+
+export default registerPassword;
