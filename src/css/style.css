@@ -328,5 +328,64 @@ p {
     color: #00297b;
   }
   /* * Fin Vista 5 */
+
+  /* * Vista 6 */
+  .main-6 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2.4rem;
+    width: 100%;
+    height: 100vh;
+  }
+
+  .contenedor-pawtita {
+    width: 100%;
+    height: 60vh;
+    position: relative;
+    top: 2.4rem;
+    background-image: url(../img/pawtita.png);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: end;
+    padding-bottom: 2.4rem;
+  }
+
+  .main-7 {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .contenedor-perrito-404 {
+    width: 37.5rem;
+    height: 37.5rem;
+    background-image: url(../img/perrito-404.png);
+    background-size: cover;
+  }
+
+  .contenedor-texto-404 {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    align-items: center;
+    padding: 2.4rem;
+  }
+
+  .contenedor-texto-404 h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--color-principal);
+  }
+
+  .contenedor-texto-404 h2 {
+    text-align: center;
+    font-weight: 500;
+    color: var(--fuente);
+  }
 }
 
