@@ -1,4 +1,5 @@
-function register1() {
+// file registerData.js
+function registerData(navigateTo) {
   const mainElement = document.createElement('main');
   mainElement.className = 'main-3';
 
@@ -108,10 +109,18 @@ function register1() {
   btnContinuar.className = 'btn-principal';
   btnContinuar.textContent = 'Continuar';
 
+  btnContinuar.addEventListener('click', () => {
+    navigateTo('/registerPassword');
+  });
+
   const linkIniciarSesion = document.createElement('a');
   linkIniciarSesion.href = '#login-principal';
   linkIniciarSesion.textContent = '¿Ya tienes una cuenta? Inicia Sesión';
 
+  linkIniciarSesion.addEventListener('click', () => {
+    navigateTo('/login');
+  });
+  
   contenedorBtn.appendChild(btnContinuar);
   contenedorBtn.appendChild(linkIniciarSesion);
 
@@ -120,8 +129,9 @@ function register1() {
   mainElement.appendChild(contenedorSeleccionMascota);
   mainElement.appendChild(contenedorBtn);
 
-  // Agregar la vista al body
-  document.body.appendChild(mainElement);
+  return mainElement;
+  // // Agregar la vista al body
+  // document.body.appendChild(mainElement);
 };
 
-export default register1;
+export default registerData;

@@ -1,4 +1,5 @@
-function login() {
+// file login.js
+function login(navigateTo) {
     const mainElement = document.createElement("main");
     mainElement.className = "main-5";
   
@@ -47,10 +48,18 @@ function login() {
     const btnIniciarSesion = document.createElement("button");
     btnIniciarSesion.className = "btn-principal";
     btnIniciarSesion.textContent = "Iniciar Sesión";
+
+    btnIniciarSesion.addEventListener('click', () => {
+      navigateTo('/feed');
+    });
   
     const linkOlvidasteContraseña = document.createElement("a");
     linkOlvidasteContraseña.href = "#";
     linkOlvidasteContraseña.textContent = "¿Olvidaste tu contraseña?";
+
+    linkOlvidasteContraseña.addEventListener('click', () => {
+      navigateTo('/forgotPassword');
+    });
   
     contenedorBtn.appendChild(btnIniciarConGoogle);
     contenedorBtn.appendChild(btnIniciarSesion);
@@ -60,7 +69,8 @@ function login() {
     mainElement.appendChild(formDatos);
     mainElement.appendChild(contenedorBtn);
   
-    // Agregar la vista al body
-    document.body.appendChild(mainElement);
+    return mainElement;
+    // // Agregar la vista al body
+    // document.body.appendChild(mainElement);
   }
 export default login;

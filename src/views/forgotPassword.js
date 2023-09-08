@@ -1,4 +1,5 @@
-function forgotPassword(){
+// file forgotPassword
+function forgotPassword(navigateTo){
     const mainElement = document.createElement("main");
     mainElement.className = "main-6";
   
@@ -36,7 +37,8 @@ function forgotPassword(){
     mainElement.appendChild(formDatos);
     mainElement.appendChild(contenedorPawtita);
   
-    // Agregar la vista al body
-    document.body.appendChild(mainElement);
+    return mainElement;
+    // // Agregar la vista al body
+    // document.body.appendChild(mainElement);
 }
 export default forgotPassword;

@@ -1,4 +1,6 @@
-function welcome(NavigateTo){
+// file welcome.js
+function welcome(navigateTo){
+  
   const mainElement = document.createElement('main');
   mainElement.className = 'main-1';
 
@@ -35,11 +37,17 @@ function welcome(NavigateTo){
   buttonElement.className = 'btn-principal';
   buttonElement.textContent = 'Saltar';
 
+  buttonElement.addEventListener('click', () => {
+    navigateTo('/principalRegister');
+  });
+
+  
   divElement.appendChild(buttonElement);
 
   mainElement.appendChild(sectionElement);
   mainElement.appendChild(divElement);
+  return mainElement;
   // Agregar la vista al body
-  document.body.appendChild(mainElement);
+  // document.body.appendChild(mainElement);
 };
 export default welcome;
