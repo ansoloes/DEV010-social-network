@@ -1,3 +1,4 @@
+// file welcome.js
 function welcome(NavigateTo){
   const mainElement = document.createElement('main');
   mainElement.className = 'main-1';
@@ -35,6 +36,10 @@ function welcome(NavigateTo){
   buttonElement.className = 'btn-principal';
   buttonElement.textContent = 'Saltar';
 
+  buttonElement.addEventListener('click', () => {
+    navigateTo('/loginPrincipal');
+  });
+  
   divElement.appendChild(buttonElement);
 
   mainElement.appendChild(sectionElement);

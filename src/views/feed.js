@@ -1,4 +1,5 @@
-function feed(){
+// file feed.js
+function feed(NavigateTo){
     const title = document.createElement('h2');
     title.textContent = 'Acá debería ir el Feed';
     const imaginacion = document.createElement('img');

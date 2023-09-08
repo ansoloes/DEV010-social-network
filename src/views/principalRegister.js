@@ -1,4 +1,5 @@
-function principalRegister(){
+// file principalRegister.js
+function principalRegister(navigateTo){
   const mainElement = document.createElement('main');
   mainElement.className = 'main-2';
   mainElement.id = 'login-principal';
@@ -15,6 +16,10 @@ function principalRegister(){
   const btnContraste = document.createElement('button');
   btnContraste.className = 'btn-contraste';
   btnContraste.textContent = 'Registrarse';
+
+  btnContraste.addEventListener('click', () => {
+    navigateTo('/registerData');
+  });
 
   const btnGoogle = document.createElement('button');
   btnGoogle.className = 'btn-google';
@@ -37,7 +42,11 @@ function principalRegister(){
   const btnIniciarSesion = document.createElement('button');
   btnIniciarSesion.className = 'btn-principal';
   btnIniciarSesion.textContent = 'Iniciar Sesión';
-
+  
+  btnIniciarSesion.addEventListener('click', () => {
+    navigateTo('/login');
+  });
+  
   contenedorBtn.appendChild(pCuenta);
   contenedorBtn.appendChild(btnIniciarSesion);
 

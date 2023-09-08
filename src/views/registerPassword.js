@@ -1,4 +1,5 @@
-function registerPassword (){
+// file registerPassword.js
+function registerPassword (NavigateTo){
   const mainElement = document.createElement('main');
   mainElement.className = 'main-4';
 
@@ -31,6 +32,10 @@ function registerPassword (){
   const btnRegistrarse = document.createElement('button');
   btnRegistrarse.className = 'btn-principal';
   btnRegistrarse.textContent = 'Registrarse';
+
+  btnRegistrarse.addEventListener('click', () => {
+    navigateTo('/feed');
+  });
 
   contenedorBtn.appendChild(btnRegistrarse);
 

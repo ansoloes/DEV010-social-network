@@ -1,4 +1,5 @@
-function login() {
+// file login.js
+function login(NavigateTo) {
     const mainElement = document.createElement("main");
     mainElement.className = "main-5";
   

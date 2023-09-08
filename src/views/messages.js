@@ -1,4 +1,5 @@
-function messages(){
+//file messages.js
+function messages(NavigateTo){
     const title = document.createElement('h2');
     title.textContent = 'Imagina que acá hay mensajes :D';
     const imaginacion = document.createElement('img');

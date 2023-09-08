@@ -1,5 +1,5 @@
 // file error.js
-function error() {
+function error(NavigateTo) {
     const mainElement = document.createElement("main");
     mainElement.className = "main-7";
   

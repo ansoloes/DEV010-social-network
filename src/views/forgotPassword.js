@@ -1,4 +1,5 @@
-function forgotPassword(){
+// file forgotPassword
+function forgotPassword(NavigateTo){
     const mainElement = document.createElement("main");
     mainElement.className = "main-6";
   
