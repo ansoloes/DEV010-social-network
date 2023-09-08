@@ -1,5 +1,5 @@
 // file registerPassword.js
-function registerPassword (NavigateTo){
+function registerPassword (navigateTo){
   const mainElement = document.createElement('main');
   mainElement.className = 'main-4';
 
@@ -43,8 +43,9 @@ function registerPassword (NavigateTo){
   mainElement.appendChild(formDatos);
   mainElement.appendChild(contenedorBtn);
 
-  // Agregar la vista al body
-  document.body.appendChild(mainElement);
+  return mainElement;
+  // // Agregar la vista al body
+  // document.body.appendChild(mainElement);
 };
 
 export default registerPassword;

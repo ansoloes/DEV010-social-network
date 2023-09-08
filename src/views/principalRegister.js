@@ -54,6 +54,7 @@ function principalRegister(navigateTo){
   mainElement.appendChild(contenedorBtnSecundario);
   mainElement.appendChild(contenedorBtn);
   // Agregar la vista al body
-  document.body.appendChild(mainElement);
+  return mainElement;
+  // document.body.appendChild(mainElement);
 };
 export default principalRegister;

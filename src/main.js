@@ -5,6 +5,7 @@ import registerPassword from './views/registerPassword.js';
 import error from './views/error.js';
 import login from './views/login.js';
 import feed from './views/feed.js';
+import forgotPassword from './views/forgotPassword.js'
 
 const routes = [
   { path: '/', component: welcome },
@@ -14,6 +15,7 @@ const routes = [
   { path: '/error', component: error },
   { path: '/login', component: login },
   { path: '/feed', component: feed },
+  { path: '/forgotPassword', component: forgotPassword },
 ];
 
 const defaultRoute = '/';
@@ -35,7 +37,8 @@ function navigateTo(hash) {
     if (root.firstChild) {
       root.removeChild(root.firstChild);
     }
-    root.appendChild(route.component());
+
+    root.appendChild(route.component(navigateTo));
    } else {
     navigateTo('/error');
   }

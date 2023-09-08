@@ -1,5 +1,5 @@
 // file error.js
-function error(NavigateTo) {
+function error(navigateTo) {
     const mainElement = document.createElement("main");
     mainElement.className = "main-7";
   
@@ -23,8 +23,9 @@ function error(NavigateTo) {
     mainElement.appendChild(contenedorPerrito404);
     mainElement.appendChild(contenedorTexto404);
   
-    // Agregar la vista generada al body
-    document.body.appendChild(mainElement);
+    return mainElement;
+    // // Agregar la vista generada al body
+    // document.body.appendChild(mainElement);
   }
   
   export default error;

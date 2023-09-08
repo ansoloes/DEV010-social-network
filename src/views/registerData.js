@@ -1,5 +1,5 @@
 // file registerData.js
-function registerData(NavigateTo) {
+function registerData(navigateTo) {
   const mainElement = document.createElement('main');
   mainElement.className = 'main-3';
 
@@ -129,8 +129,9 @@ function registerData(NavigateTo) {
   mainElement.appendChild(contenedorSeleccionMascota);
   mainElement.appendChild(contenedorBtn);
 
-  // Agregar la vista al body
-  document.body.appendChild(mainElement);
+  return mainElement;
+  // // Agregar la vista al body
+  // document.body.appendChild(mainElement);
 };
 
 export default registerData;
