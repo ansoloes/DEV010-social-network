@@ -196,6 +196,10 @@ p {
   .btn-google img {
     width: 2.4rem;
   }
+
+  .hidden{
+    display:none;
+  }
   /* * Fin Vista 2 */
 
   /* * Vista 3 */
