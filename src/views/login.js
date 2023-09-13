@@ -40,7 +40,7 @@ function login(navigateTo) {
     const btnIniciarConGoogle = document.createElement("button");
     btnIniciarConGoogle.className = "btn-google";
     const imgGoogle = document.createElement("img");
-    imgGoogle.src = "img/google.png";
+    imgGoogle.src = "../img/google.png";
     imgGoogle.alt = "ícono Google";
     btnIniciarConGoogle.appendChild(imgGoogle);
     btnIniciarConGoogle.textContent = "Iniciar con Google";

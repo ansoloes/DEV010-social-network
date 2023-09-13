@@ -24,7 +24,7 @@ function principalRegister(navigateTo){
   const btnGoogle = document.createElement('button');
   btnGoogle.className = 'btn-google';
   const imgGoogle = document.createElement('img');
-  imgGoogle.src = 'img/google.png';
+  imgGoogle.src = '../img/google.png';
   imgGoogle.alt = 'ícono Google';
   btnGoogle.appendChild(imgGoogle);
   btnGoogle.textContent = 'Registrarse con Google';

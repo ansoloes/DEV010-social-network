@@ -31,6 +31,10 @@ html {
   box-sizing: inherit;
 }
 
+input {
+  background-color: transparent;
+}
+
 h1,
 h2,
 h3,
@@ -40,7 +44,7 @@ p {
 }
 
 
-@media (max-width: 375px) {
+@media (max-width: 376px) {
   body {
     font-size: 1.6rem;
     scroll-snap-type: y mandatory;
@@ -210,6 +214,8 @@ p {
     justify-content: space-between;
     width: 100%;
     height: 100vh;
+    background-image: url(../img/background-main-3.png);
+    background-size: cover;
   }
 
   .form-datos {
@@ -231,6 +237,12 @@ p {
     gap: 1.2rem;
   }
 
+  .form-fecha input {
+    padding: 1.2rem;
+    border: .1rem solid var(--gris);
+    border-radius: .8rem;
+  }
+
   .contenedor-fecha {
     display: flex;
     justify-content: center;
@@ -249,6 +261,7 @@ p {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
   }
 
   .seleccion-mascota {
