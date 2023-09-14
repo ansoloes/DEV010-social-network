@@ -18,7 +18,7 @@
     <div id="root"></div>
 
     <!-- * Vista 1 -->
-    <!-- <main class="main-1">
+     <main class="main-1">
       <section class="contenedor-carrusel">
         <article class="carrusel">
           <img src="img/slide1.png" alt="Carrusel 1" id="carrusel-1">
@@ -35,11 +35,11 @@
       <div class="contenedor-btn">
         <button class="btn-principal">Saltar</button>
       </div>
-    </main> -->
+    </main> 
     <!-- * Fin Vista 1 -->
 
     <!-- * Vista 2 -->
-    <!-- <main class="main-2" id="login-principal">
+    <main class="main-2" id="login-principal">
       <div class="contenedor-logo-principal"></div>
 
       <div class="contenedor-btn-secundario">
@@ -56,26 +56,26 @@
     <!-- * Fin Vista 2 -->
 
     <!-- * Vista 3 -->
-    <!-- <main class="main-3">
+     <main class="main-3">
       <form action="" id="nombre-correo" class="form-datos">
-        <input type="text" name="" id="" placeholder="Nombre Completo">
-        <input type="email" name="" id="" placeholder="Correo Electrónico">
+        <input type="text" name="email" id="username" placeholder="Nombre Completo">
+        <input type="email" name="email" id="email" placeholder="Correo Electrónico">
       </form>
 
       <form action="" id="contraseña-nueva" class="form-datos">
-        <input type="password" name="" id="" placeholder="Nueva Contraseña">
-        <input type="password" name="" id="" placeholder="Repetir Contraseña">
+        <input type="password" name="password" id="password" placeholder="Nueva Contraseña">
+        <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Repetir Contraseña">
       </form>
 
       <div class="contenedor-btn">
-        <button class="btn-principal">Continuar</button>
+        <input type="submit" id='signUp' name="signup_submit" value="Continuar"/>
         <a href="#login-principal">¿Ya tienes una cuenta? Inicia Sesión</a>
       </div>
-    </main> -->
+    </main> 
     <!-- * Fin Vista 3 -->
     
     <!-- * Vista 4 -->
-     <!-- <main class="main-4">
+      <main class="main-4">
       <div class="contenedor-ilustracion-contraseña"></div>
 
       <form action="" class="form-fecha">
@@ -109,29 +109,29 @@
       <div class="contenedor-btn">
         <button class="btn-principal">Registrarse</button>
       </div>
-    </main> -->
+    </main> 
     <!-- * Fin Vista 4 -->
 
     <!-- * Vista 5 -->
-    <!-- <main class="main-5"> -->
-      <!--  ?  este ya estaba comentado de antes =><div class="contenedor-logo-principal"></div> -->
-      <!-- <h1>Iniciar Sesión</h1>
+     <main class="main-5"> 
+      <div class="contenedor-logo-principal"></div> 
+       <h1>Iniciar Sesión</h1>
       <form action="" class="form-datos">
         <label for="login-correo-electronico">Ingresa tu correo electrónico:</label>
-        <input type="new" name="" id="login-correo-electronico">
+        <input type="text" name="correo" id="correo">
         <label for="login-contraseña">Ingresa tu contraseña:</label>
-        <input type="repeat" name="" id="login-contraseña">
+        <input type="password" name="contraseña" id="contraseña">
       </form>
       <div class="contenedor-btn">
         <button class="btn-google"><img src="img/google.png" alt="ícono Google">Iniciar con Google</button>
-        <button class="btn-principal">Iniciar Sesión</button>
+        <input type="submit" id='login' name="login" value="Iniciar Sesión"/>
         <a href="#">¿Olvidaste tu contraseña?</a>
       </div>
-    </main> -->
+    </main> 
     <!-- * Fin Vista 5-->
 
     <!-- * Vista 6 -->
-    <!-- <main class="main-6">
+     <main class="main-6">
       <form action="" class="form-datos">
         <label for="correo-electronico-recuperacion">
           Si olvidaste tu contraseña confirma el correo electrónico con el cual te registrarte para enviarte un enlace de recuperación. Procura revisar en la carpeta de Spam si no encuentras nuestro mensaje.
@@ -143,18 +143,133 @@
           <button class="btn-principal">Enviar Correo</button>
         </div>
       </div>
-    </main> -->
+    </main> 
     <!-- * Fin Vista 6 -->
     <!-- * Vista 7 -->
-    <!-- <main class="main-7">
+     <main class="main-7">
       <div class="contenedor-perrito-404"></div>
       <article class="contenedor-texto-404">
         <h1>Error 404</h1>
         <h2>No puedo encontrar tu página en este zapato</h2>
       </article>
-    </main> -->
+    </main> 
     <!-- * Fin Vista 7 -->
     <script src="https://kit.fontawesome.com/a90d1ac3f5.js" crossorigin="anonymous"></script>
     <script type="module" src="main.js"></script>
   </body>
+
+  <script type="module">
+ // Importa las bibliotecas necesarias desde Firebase
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword ,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
+import { getDatabase, ref, set, update } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+
+// Configura tu proyecto de Firebase (reemplaza con tu propia configuración)
+const firebaseConfig = {
+  apiKey: 'AIzaSyDCFX9nccrxLMKhDR35FCsRkiNwg9UL4vU',
+  authDomain: 'onlypaws-8b6cb.firebaseapp.com',
+  projectId: 'onlypaws-8b6cb',
+  storageBucket: 'onlypaws-8b6cb.appspot.com',
+  messagingSenderId: '57214639350',
+  appId: '1:57214639350:web:2bf2b904f656e016e8e0d7',
+  measurementId: 'G-4LMCV6VEMQ',
+};
+
+// Inicializa Firebase con tu configuración
+const app = initializeApp(firebaseConfig);
+const auth = getAuth();
+const database = getDatabase(app);
+
+signUp.addEventListener('click',(e) => {
+
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('password').value;
+      var confirmPassword = document.getElementById('confirmPassword').value;
+      var username =document.getElementById('username').value    
+
+      if (password !== confirmPassword) {
+      alert('Las contraseñas no coinciden. Por favor, inténtalo de nuevo.');
+      return; // Detén la función si las contraseñas no coinciden
+    }
+          // Crea el usuario con correo electrónico y contraseña
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Usuario registrado exitosamente, puedes realizar acciones adicionales aquí
+          const user = userCredential.user;
+  
+          set(ref(database, 'users/' + user.uid),{
+            email: email
+          });
+  
+          alert('Usuario creado exitosamente.');
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // Handle errors aquí, por ejemplo, mostrar un mensaje de error
+          alert(errorMessage);
+        });
+    });
+  
+
+login.addEventListener('click',(e)=>{
+  var email = document.getElementById('correo').value;
+  var password = document.getElementById('contraseña').value;
+  
+
+    signInWithEmailAndPassword(auth,email,password)
+    .then((userCredential) =>{
+    //Signed in
+    const user = userCredential.user;
+    
+    const dt = new Date();
+      update(ref(database, 'users/' + user.uid),{
+        last_login:dt,
+        
+      })
+
+      alert('User loged in!');
+    //..
+  })
+    .catch((error) => {
+      const errorCode= error.code;
+      const errorMessage = error.message;
+
+      alert(errorMessage);
+  });
+
+});
+
+const user = auth.currentUser;
+onAuthStateChanged(auth, (user) =>{
+  if(user) {
+    //User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/firebase.User
+
+    const uid= user.uid;
+   // . . .
+  } else {
+   // User is signed out
+   // ...
+
+  }
+})
+
+logout.addEventListener('click',(e) =>{
+
+  signOut(auth).then(()  =>{
+    //sign out succesful
+    alert('user loged out');
+  }).catch((error) => {
+    //an error happened
+    const errorCode = error.code;
+     const errorMessage = error.message;
+
+     alert(errorMessage);
+  });
+
+});
+
+</script>
 </html>
