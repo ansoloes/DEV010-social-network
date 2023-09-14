@@ -299,6 +299,17 @@ p {
     text-decoration: none;
     color: var(--color-principal);
   }
+
+  #signUp {
+    padding: 1.4rem;
+    width: 100%;
+    background-color: var(--color-principal);
+    color: var(--blanco);
+    border: none;
+    font-size: 1.8rem;
+    border-radius: 5rem;
+    cursor: pointer;
+}
   /* * Fin Vista 3 */
 
   /* * Vista 4 */
@@ -344,6 +355,17 @@ p {
     font-weight: 500;
     color: #00297b;
   }
+
+  #login{
+    padding: 1.4rem;
+    width: 100%;
+    background-color: var(--color-principal);
+    color: var(--blanco);
+    border: none;
+    font-size: 1.8rem;
+    border-radius: 5rem;
+    cursor: pointer;
+}
   /* * Fin Vista 5 */
 
   /* * Vista 6 */
