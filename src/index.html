@@ -18,7 +18,7 @@
     <div id="root"></div>
 
     <!-- * Vista 1 -->
-     <main class="main-1">
+     <!-- <main class="main-1">
       <section class="contenedor-carrusel">
         <article class="carrusel">
           <img src="img/slide1.png" alt="Carrusel 1" id="carrusel-1">
@@ -35,11 +35,11 @@
       <div class="contenedor-btn">
         <button class="btn-principal">Saltar</button>
       </div>
-    </main> 
+    </main>  -->
     <!-- * Fin Vista 1 -->
 
     <!-- * Vista 2 -->
-    <main class="main-2" id="login-principal">
+    <!-- <main class="main-2" id="login-principal">
       <div class="contenedor-logo-principal"></div>
 
       <div class="contenedor-btn-secundario">
@@ -56,7 +56,7 @@
     <!-- * Fin Vista 2 -->
 
     <!-- * Vista 3 -->
-     <main class="main-3">
+     <!-- <main class="main-3">
       <form action="" id="nombre-correo" class="form-datos">
         <input type="text" name="email" id="username" placeholder="Nombre Completo">
         <input type="email" name="email" id="email" placeholder="Correo Electrónico">
@@ -71,11 +71,11 @@
         <input type="submit" id='signUp' name="signup_submit" value="Continuar"/>
         <a href="#login-principal">¿Ya tienes una cuenta? Inicia Sesión</a>
       </div>
-    </main> 
+    </main>  -->
     <!-- * Fin Vista 3 -->
     
     <!-- * Vista 4 -->
-      <main class="main-4">
+    <!-- <main class="main-4">
       <div class="contenedor-ilustracion-contraseña"></div>
 
       <form action="" class="form-fecha">
@@ -109,11 +109,11 @@
       <div class="contenedor-btn">
         <button class="btn-principal">Registrarse</button>
       </div>
-    </main> 
+    </main>  -->
     <!-- * Fin Vista 4 -->
 
     <!-- * Vista 5 -->
-     <main class="main-5"> 
+     <!-- <main class="main-5"> 
       <div class="contenedor-logo-principal"></div> 
        <h1>Iniciar Sesión</h1>
       <form action="" class="form-datos">
@@ -127,11 +127,11 @@
         <input type="submit" id='login' name="login" value="Iniciar Sesión"/>
         <a href="#">¿Olvidaste tu contraseña?</a>
       </div>
-    </main> 
+    </main>  -->
     <!-- * Fin Vista 5-->
 
     <!-- * Vista 6 -->
-     <main class="main-6">
+     <!-- <main class="main-6">
       <form action="" class="form-datos">
         <label for="correo-electronico-recuperacion">
           Si olvidaste tu contraseña confirma el correo electrónico con el cual te registrarte para enviarte un enlace de recuperación. Procura revisar en la carpeta de Spam si no encuentras nuestro mensaje.
@@ -143,22 +143,22 @@
           <button class="btn-principal">Enviar Correo</button>
         </div>
       </div>
-    </main> 
+    </main>  -->
     <!-- * Fin Vista 6 -->
     <!-- * Vista 7 -->
-     <main class="main-7">
+     <!-- <main class="main-7">
       <div class="contenedor-perrito-404"></div>
       <article class="contenedor-texto-404">
         <h1>Error 404</h1>
         <h2>No puedo encontrar tu página en este zapato</h2>
       </article>
-    </main> 
+    </main>  -->
     <!-- * Fin Vista 7 -->
     <script src="https://kit.fontawesome.com/a90d1ac3f5.js" crossorigin="anonymous"></script>
     <script type="module" src="main.js"></script>
   </body>
 
-  <script type="module">
+  <!-- <script type="module">
  // Importa las bibliotecas necesarias desde Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword ,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
@@ -190,7 +190,7 @@ signUp.addEventListener('click',(e) => {
       if (password !== confirmPassword) {
       alert('Las contraseñas no coinciden. Por favor, inténtalo de nuevo.');
       return; // Detén la función si las contraseñas no coinciden
-    }
+     }
           // Crea el usuario con correo electrónico y contraseña
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
@@ -229,7 +229,7 @@ login.addEventListener('click',(e)=>{
         
       })
 
-      alert('User loged in!');
+      alert('User logged in!');
     //..
   })
     .catch((error) => {
@@ -244,7 +244,7 @@ login.addEventListener('click',(e)=>{
 const user = auth.currentUser;
 onAuthStateChanged(auth, (user) =>{
   if(user) {
-    //User is signed in, see docs for a list of available properties
+    // User is signed in, see docs for a list of available properties
     // https://firebase.google.com/docs/reference/js/firebase.User
 
     const uid= user.uid;
@@ -271,5 +271,5 @@ logout.addEventListener('click',(e) =>{
 
 });
 
-</script>
+</script> -->
 </html>

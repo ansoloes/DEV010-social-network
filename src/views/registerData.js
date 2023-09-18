@@ -1,3 +1,7 @@
+import {createUserWithEmailAndPassword} from "firebase/auth"
+import {doc, setDoc} from "firebase/firestore"
+import { auth, db } from "../lib/firebaseConfig.js";
+
 // file registerData.js
 function registerData(navigateTo) {
   const mainElement = document.createElement('main');
@@ -11,10 +15,12 @@ function registerData(navigateTo) {
 
   const inputNombre = document.createElement('input');
   inputNombre.type = 'text';
+  inputNombre.id = 'username';
   inputNombre.placeholder = 'Nombre Completo';
 
   const inputCorreo = document.createElement('input');
   inputCorreo.type = 'email';
+  inputCorreo.id = 'email';
   inputCorreo.placeholder = 'Correo Electrónico';
 
   formDatos.appendChild(inputNombre);
@@ -29,10 +35,12 @@ function registerData(navigateTo) {
 
   const inputContraseñaNueva = document.createElement('input');
   inputContraseñaNueva.type = 'password';
+  inputContraseñaNueva.id = 'password';
   inputContraseñaNueva.placeholder = 'Nueva Contraseña';
 
   const inputRepetirContraseña = document.createElement('input');
   inputRepetirContraseña.type = 'password';
+  inputRepetirContraseña.id = 'confirmPassword';
   inputRepetirContraseña.placeholder = 'Repetir Contraseña';
 
   formDatos2.appendChild(inputContraseñaNueva);
@@ -43,11 +51,57 @@ function registerData(navigateTo) {
   contenedorBtn.className = 'contenedor-btn';
 
   const btnContinuar = document.createElement('button');
-  btnContinuar.className = 'btn-principal';
-  btnContinuar.textContent = 'Continuar';
+  btnContinuar.type = 'submit';
+  btnContinuar.id = 'signUp';
+  btnContinuar.name = 'signup_submit';
+  btnContinuar.innerHTML = 'Continuar';
 
   btnContinuar.addEventListener('click', () => {
-    navigateTo('/registerPassword');
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    const username = document.getElementById('username').value;
+
+    if (password !== confirmPassword) {
+      alert('Las contraseñas no coinciden. Por favor, inténtalo de nuevo.');
+      return; // Detener la función si las contraseñas no coinciden
+    }
+
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Usuario registrado exitosamente, puedes realizar acciones adicionales aquí
+      const user = userCredential.user;
+
+      // Información adicional firestore, esto se guarda en documentos
+      const userDocRef = doc(db, 'users', user.uid);
+      const userData = {
+        email: email,
+        username: username,
+        password: password
+      };
+      
+      setDoc(userDocRef, userData)
+      .then(() => {
+        alert('Usuario creado exitosamente.');
+      })
+      .catch((error) => {
+        console.error('Error al almacenar datos en Firestore:', error);
+      });
+
+      alert('Usuario creado exitosamente.');
+
+      // Ve a la siguiente vista
+      navigateTo('/registerPassword');
+      
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // Handle errors aquí, por ejemplo, mostrar un mensaje de error
+      alert(errorMessage);
+    });
+
   });
 
   const linkIniciarSesion = document.createElement('a');
@@ -67,8 +121,6 @@ function registerData(navigateTo) {
   mainElement.appendChild(contenedorBtn);
 
   return mainElement;
-  // // Agregar la vista al body
-  // document.body.appendChild(mainElement);
 };
 
 export default registerData;
