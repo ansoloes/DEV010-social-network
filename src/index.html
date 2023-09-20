@@ -13,12 +13,13 @@
     <!-- ********** Hojas de Estilo ********** -->
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   </head>
   <body>
     <div id="root"></div>
 
     <!-- * Vista 1 -->
-     <!-- <main class="main-1">
+      <main class="main-1">
       <section class="contenedor-carrusel">
         <article class="carrusel">
           <img src="img/slide1.png" alt="Carrusel 1" id="carrusel-1">
@@ -35,11 +36,11 @@
       <div class="contenedor-btn">
         <button class="btn-principal">Saltar</button>
       </div>
-    </main>  -->
+    </main>  
     <!-- * Fin Vista 1 -->
 
     <!-- * Vista 2 -->
-    <!-- <main class="main-2" id="login-principal">
+     <main class="main-2" id="login-principal">
       <div class="contenedor-logo-principal"></div>
 
       <div class="contenedor-btn-secundario">
@@ -52,11 +53,11 @@
         <p>¿Ya tienes una cuenta?</p>
         <button class="btn-principal">Iniciar Sesión</button>
       </div>
-    </main> -->
+    </main> 
     <!-- * Fin Vista 2 -->
 
     <!-- * Vista 3 -->
-     <!-- <main class="main-3">
+      <main class="main-3">
       <form action="" id="nombre-correo" class="form-datos">
         <input type="text" name="email" id="username" placeholder="Nombre Completo">
         <input type="email" name="email" id="email" placeholder="Correo Electrónico">
@@ -71,11 +72,11 @@
         <input type="submit" id='signUp' name="signup_submit" value="Continuar"/>
         <a href="#login-principal">¿Ya tienes una cuenta? Inicia Sesión</a>
       </div>
-    </main>  -->
+    </main>  
     <!-- * Fin Vista 3 -->
     
     <!-- * Vista 4 -->
-    <!-- <main class="main-4">
+     <main class="main-4">
       <div class="contenedor-ilustracion-contraseña"></div>
 
       <form action="" class="form-fecha">
@@ -109,11 +110,11 @@
       <div class="contenedor-btn">
         <button class="btn-principal">Registrarse</button>
       </div>
-    </main>  -->
+    </main>  
     <!-- * Fin Vista 4 -->
 
     <!-- * Vista 5 -->
-     <!-- <main class="main-5"> 
+      <main class="main-5"> 
       <div class="contenedor-logo-principal"></div> 
        <h1>Iniciar Sesión</h1>
       <form action="" class="form-datos">
@@ -127,41 +128,43 @@
         <input type="submit" id='login' name="login" value="Iniciar Sesión"/>
         <a href="#">¿Olvidaste tu contraseña?</a>
       </div>
-    </main>  -->
+    </main>  
     <!-- * Fin Vista 5-->
 
     <!-- * Vista 6 -->
-     <!-- <main class="main-6">
+      <main class="main-6">
       <form action="" class="form-datos">
-        <label for="correo-electronico-recuperacion">
+        <label for="floatingInput">
           Si olvidaste tu contraseña confirma el correo electrónico con el cual te registrarte para enviarte un enlace de recuperación. Procura revisar en la carpeta de Spam si no encuentras nuestro mensaje.
         </label>
-        <input type="new" name="" id="correo-electronico-recuperacion">
+        <input type="email" name="" id="floatingInput">
       </form>
       <div class="contenedor-pawtita">
         <div class="contenedor-btn">
-          <button class="btn-principal">Enviar Correo</button>
+          <button class="btn-principal" id="submit-data">Enviar Correo</button>
         </div>
       </div>
-    </main>  -->
+    </main>  
     <!-- * Fin Vista 6 -->
     <!-- * Vista 7 -->
-     <!-- <main class="main-7">
+     <main class="main-7">
       <div class="contenedor-perrito-404"></div>
       <article class="contenedor-texto-404">
         <h1>Error 404</h1>
         <h2>No puedo encontrar tu página en este zapato</h2>
       </article>
-    </main>  -->
+    </main>  
     <!-- * Fin Vista 7 -->
+    <script src="https://kit.fontawesome.com/a90d1ac3f5.js" crossorigin="anonymous"></script>
+    <script type="module" src="main.js"></script>
     <script src="https://kit.fontawesome.com/a90d1ac3f5.js" crossorigin="anonymous"></script>
     <script type="module" src="main.js"></script>
   </body>
 
-  <!-- <script type="module">
+ <script type="module">
  // Importa las bibliotecas necesarias desde Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword ,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword ,onAuthStateChanged,sendPasswordResetEmail} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
 import { getDatabase, ref, set, update } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
 
 // Configura tu proyecto de Firebase (reemplaza con tu propia configuración)
@@ -179,6 +182,32 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const database = getDatabase(app);
+
+
+let submit_data = document.getElementById("submit-data");
+
+submit_data.addEventListener("click", (event) => {
+  event.preventDefault();  // Evita que el formulario se envíe
+
+  let forgetEmail = document.getElementById("floatingInput").value;  // Obtén el valor del correo electrónico
+
+  if (!forgetEmail) {
+    swal("Advertencia", "Por favor, ingresa tu correo electrónico.", "warning");
+    return;
+  }
+
+  sendPasswordResetEmail(auth, forgetEmail)
+    .then(() => {
+      // Limpiar el campo de correo electrónico después de enviar el correo de restablecimiento
+      document.getElementById("floatingInput").value = "";
+      swal("¡Éxito!", "Tu contraseña ha sido restablecida. Por favor, revisa tu correo electrónico.", "success");
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      swal("Error", "No se pudo enviar el correo de restablecimiento. Por favor, verifica tu correo electrónico.", "error");
+    });
+});
 
 signUp.addEventListener('click',(e) => {
 
@@ -271,5 +300,5 @@ logout.addEventListener('click',(e) =>{
 
 });
 
-</script> -->
+</script> 
 </html>
