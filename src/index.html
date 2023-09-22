@@ -13,6 +13,7 @@
     <!-- ********** Hojas de Estilo ********** -->
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   </head>
   <body>
@@ -156,9 +157,58 @@
     </main>  
     <!-- * Fin Vista 7 -->
     <script src="https://kit.fontawesome.com/a90d1ac3f5.js" crossorigin="anonymous"></script>
-    <script type="module" src="main.js"></script>
     <script src="https://kit.fontawesome.com/a90d1ac3f5.js" crossorigin="anonymous"></script>
     <script type="module" src="main.js"></script>
+    <script type="module" src="main.js"></script>
+     <!-- * Vista 8 -->
+     <main class="main-8">
+       <header id="header" class="vista-8-header">
+        <img src="img/oplogo.png" alt="Logo" class="header-logo">
+        <div class="header-profile">
+          <img src="img/dueña.jpg" alt="Profile Picture" class="profile-image">
+          <p class="welcome-message">Bienvenido/a, [Nombre de Usuario]</p>
+        </div>
+        <button class="logout-button">
+          <i class="fa-solid fa-right-from-bracket"></i>
+        </button>
+      </header>
+      <div class="post-container">
+        <div class="profile-container">
+          <img src="img/dueña.jpg" alt="Profile Image" class="profile-image">
+        </div>
+        <div class="actions">
+          <button class="action-button">
+            <i class="fa-regular fa-trash-can"></i>
+          <button class="action-button">
+            <i class="fa-solid fa-pen-to-square"></i> 
+          </button>
+        </div>
+        <div class="like-button">
+          <button class="action-button">
+            <i class="fa-solid fa-paw"></i> <!-- Agregamos el icono de pata -->
+            <i class="paw"></i> <!-- Usamos la clase paw para el icono -->
+          </button>
+        </div>
+        <div class="post-content">
+          <h4 class="username">Nombre de Usuario</h4>
+          <p class="timestamp">Hace 2 horas</p>
+          <p class="post-text">Contenido del post</p>
+        </div>
+      </div>
+      <footer id="footer">
+        <button class="footer-home">
+          <i class="fa-solid fa-house"></i>
+        </button>
+        <button class="profile-button">
+          <i class="fa-solid fa-paw" id="profile-icon"></i>
+        </button>
+        <button class="footer-button">
+          <i class="fa-solid fa-dog"></i>
+        </button>
+      </footer>
+     </main>
+    <!-- * Fin Vista 8 -->
+
   </body>
 
  <script type="module">
@@ -166,6 +216,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword ,onAuthStateChanged,sendPasswordResetEmail} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
 import { getDatabase, ref, set, update } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+
 
 // Configura tu proyecto de Firebase (reemplaza con tu propia configuración)
 const firebaseConfig = {

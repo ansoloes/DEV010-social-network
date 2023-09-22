@@ -402,7 +402,7 @@ p {
 
   .contenedor-perrito-404 {
     width: 37.5rem;
-    height: 37.5rem;
+    
     background-image: url(../img/perrito-404.png);
     background-size: cover;
   }
@@ -430,35 +430,211 @@ p {
 
 
  /* * Vista 8*/
- .header {
-  background-color: black;
+ .main-8 {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  height: 100vh;
   justify-content: space-between;
+ }
+
+ #header {
+  background-color: #AFDEED;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
   padding: 10px;
-  align-items: center;
-}
-.header img {
-  width: 25%;
-  height: auto;
-}
-.body-content {
-  padding: 20px;
-  flex-grow: 1; /* Esto permite que crezca y ocupe el espacio disponible */
-}
-.footer {
-  background-color: green;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  gap: 2.4rem;
+  /*margin-bottom: 70px; /* Ajusta este valor para subir o bajar el header */
 }
-.footer .circle-button {
+.vista-8-header {
+  /* position: fixed; */
+  width: 100%;
+  height: 8rem;
+}
+
+.header-logo {
+  /* float: left; */
+  width: 60px; /* Tamaño deseado para el logo */
+  height: 60px; /* Tamaño deseado para el logo */
+  object-fit: cover; /* Ajusta la imagen para cubrir todo el espacio sin deformarse */
+  border-radius: 50%; /* Lo hace un círculo */
+}
+
+.header-profile {
+  /* float: left; */
+  display: flex;
+  align-items: center;
+  gap: 2.4rem;
+}
+
+.profile-image {
+  border-radius: 50%;
+}
+
+.profile-image-container img {
+  margin-top: 60px; /* Ajusta el margen superior según sea necesario */
+  width: 40px; /* Ajusta el tamaño del contenedor según sea necesario */
+  height: 40px;
+}
+
+.logout-button {
+  float: right;
+  background-color: transparent;
+  border: none;
+  color: #0077B1; /* Change color as needed */
+  font-size: 30px;
+}
+
+.logout-button:hover {
+  text-decoration: underline;
+}
+
+.post-container {
+  position: relative;
+  width: 310px;
+  height: 200px;
+  margin: 10px auto 60px; /* Ajusta este margen inferior según sea necesario */
+  border-radius: 10px;
+  background-color: #FFFFFF;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+.profile-container {
+  position: absolute;
+  top: -15px;
+  left: -15px;
   width: 50px;
   height: 50px;
-  background-color: blue;
   border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background-color: #FFFFFF;
+  box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
 }
+
+.profile-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.action-button {
+  background-color: #FFFFFF;
+  border: none;
+  cursor: pointer;
+}
+
+.action-icon {
+  width: 20px;
+  height: 20px;
+  
+}
+
+.like-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+ 
+}
+.like-button .fa-paw {
+  color: #EC7B67; /* Cambia el color del icono de la pata según tu preferencia */
+  margin-right: 5px; /* Ajusta el margen derecho según tu diseño */
+}
+.post-content {
+  padding: 20px;
+}
+
+.username {
+  font-weight: bold;
+  color: #00297B;
+}
+
+.timestamp {
+  font-size: 12px;
+  color: #333;
+  margin: 5px 0;
+}
+
+.post-text {
+  color: #00297B;
+  text-align: center;
+}
+
+.footer-button:active {
+  opacity: 0.7; /* Puedes ajustar la opacidad según tus preferencias */
+}
+#footer {
+  background-color: #BAD265;
+  height: 6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+#profile-icon {
+  color: white; /* Cambia el color según tu preferencia */
+  margin-left: auto; /* Mueve el ícono a la mitad */
+  margin-right: auto; /* Mueve el ícono a la mitad */
+}
+#house-icon {
+  color:#0077B1; /* Cambia el color según tu preferencia */
+}
+.footer-button {
+  background-color: transparent;
+  border: none;
+  color: #0077B1;
+  font-size: 30px;
+  
+  /* Ajusta el valor negativo según sea necesario para mover a la izquierda */
+}
+.footer-home {
+  background-color: transparent;
+  border: none;
+  color: #0077B1;
+  font-size: 30px;
+   /* Ajusta el valor negativo según sea necesario para mover a la izquierda */
+}
+.footer-home:active {
+  opacity: 0.7; /* Puedes ajustar la opacidad según tus preferencias */
+}
+.footer-button:hover {
+  text-decoration: underline;
+}
+
+.footer-profile {
+  display: flex;
+  align-items: center; /* Centra los elementos verticalmente */
+   /* Centra verticalmente */
+  justify-content: center; 
+}
+.footer-button:profile {
+  opacity: 0.7; /* Puedes ajustar la opacidad según tus preferencias */
+}
+
+.profile-button:active {
+  opacity: 0.7;
+}
+.profile-button {
+  background-color: #EC7B67; /* Color de fondo */
+  position: relative;
+  bottom: 2.4rem;
+  border: none;
+  color: white;
+  font-size: 30px;
+  border-radius: 50%;
+  width: 50px; /* Ancho igual a la altura para formar un círculo perfecto */
+  height: 50px; 
+  display: flex; /* Usamos flexbox */
+  align-items: center; /* Centramos verticalmente */
+  justify-content: center; /* Centramos horizontalmente */
+   /* Ajustamos la posición desde abajo */
+}
+
