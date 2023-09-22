@@ -430,6 +430,12 @@ p {
 
 
  /* * Vista 8*/
+ .main-8 {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
+ }
 
  #header {
   background-color: #AFDEED;
@@ -439,51 +445,46 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 70; /* Ajusta este valor para subir o bajar el header */
+  gap: 2.4rem;
+  /*margin-bottom: 70px; /* Ajusta este valor para subir o bajar el header */
 }
 .vista-8-header {
-  position: fixed;
-  top: 0;
+  /* position: fixed; */
   width: 100%;
-  height: 12%;
-  
-  
- 
+  height: 8rem;
 }
+
 .header-logo {
-  float: left;
+  /* float: left; */
+  width: 60px; /* Tamaño deseado para el logo */
+  height: 60px; /* Tamaño deseado para el logo */
+  object-fit: cover; /* Ajusta la imagen para cubrir todo el espacio sin deformarse */
+  border-radius: 50%; /* Lo hace un círculo */
 }
 
 .header-profile {
-  float: left;
-  margin-left: 10px;
+  /* float: left; */
   display: flex;
   align-items: center;
-}
-
-.profile-image-container {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  overflow: hidden;
+  gap: 2.4rem;
 }
 
 .profile-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  border-radius: 50%;
 }
 
-.welcome-message {
-  margin-left: 10px;
+.profile-image-container img {
+  margin-top: 60px; /* Ajusta el margen superior según sea necesario */
+  width: 40px; /* Ajusta el tamaño del contenedor según sea necesario */
+  height: 40px;
 }
 
 .logout-button {
   float: right;
   background-color: transparent;
   border: none;
-  color: #000; /* Change color as needed */
-  font-size: 16px;
+  color: #0077B1; /* Change color as needed */
+  font-size: 30px;
 }
 
 .logout-button:hover {
@@ -494,14 +495,12 @@ p {
   position: relative;
   width: 310px;
   height: 200px;
-  margin: 120px auto 0; /* Ajusta este margen superior según sea necesario */
+  margin: 10px auto 60px; /* Ajusta este margen inferior según sea necesario */
   border-radius: 10px;
   background-color: #FFFFFF;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 .profile-container {
   position: absolute;
@@ -549,7 +548,7 @@ p {
   margin-right: 5px; /* Ajusta el margen derecho según tu diseño */
 }
 .post-content {
-  padding: 10px;
+  padding: 20px;
 }
 
 .username {
@@ -573,12 +572,13 @@ p {
 }
 #footer {
   background-color: #BAD265;
-  padding: 20px;
+  height: 6rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0;
+  padding: 0;
 }
-
 #profile-icon {
   color: white; /* Cambia el color según tu preferencia */
   margin-left: auto; /* Mueve el ícono a la mitad */
@@ -592,7 +592,6 @@ p {
   border: none;
   color: #0077B1;
   font-size: 30px;
-  margin-left: 88px;
   
   /* Ajusta el valor negativo según sea necesario para mover a la izquierda */
 }
@@ -620,19 +619,13 @@ p {
   opacity: 0.7; /* Puedes ajustar la opacidad según tus preferencias */
 }
 
-.profile-image-container {
-  display: flex; /* Use flexbox to center items */
-  align-items: center;
-  margin-right: 10px;
-  margin-top: -60px;
-
-}
 .profile-button:active {
   opacity: 0.7;
 }
 .profile-button {
-  position: absolute; /* Cambiamos a posición absoluta */
   background-color: #EC7B67; /* Color de fondo */
+  position: relative;
+  bottom: 2.4rem;
   border: none;
   color: white;
   font-size: 30px;
@@ -643,18 +636,5 @@ p {
   align-items: center; /* Centramos verticalmente */
   justify-content: center; /* Centramos horizontalmente */
    /* Ajustamos la posición desde abajo */
-  right: 50%; /* Posicionamos en la mitad del footer */
-  transform: translateX(50%); /* Centramos horizontalmente */
 }
 
-
-
-.notification-dot {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background-color: #BAD265;
-  border-radius: 50%;
-  bottom: -10px;
-  right: calc(50% - 10px);
-}
