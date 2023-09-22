@@ -402,7 +402,7 @@ p {
 
   .contenedor-perrito-404 {
     width: 37.5rem;
-    height: 37.5rem;
+    
     background-image: url(../img/perrito-404.png);
     background-size: cover;
   }
@@ -440,6 +440,15 @@ p {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 70; /* Ajusta este valor para subir o bajar el header */
+}
+.vista-8-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 12%;
+  
+  
+ 
 }
 .header-logo {
   float: left;
@@ -485,10 +494,14 @@ p {
   position: relative;
   width: 310px;
   height: 200px;
-  margin: 200px auto 0; /* Ajusta este valor para subir o bajar el contenido */
+  margin: 120px auto 0; /* Ajusta este margen superior según sea necesario */
   border-radius: 10px;
   background-color: #FFFFFF;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .profile-container {
   position: absolute;
