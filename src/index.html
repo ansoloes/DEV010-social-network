@@ -13,6 +13,7 @@
     <!-- ********** Hojas de Estilo ********** -->
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   </head>
   <body>
@@ -175,11 +176,17 @@
         <img src="profile.jpg" alt="Profile Image" class="profile-image">
       </div>
       <div class="actions">
-        <button class="action-button"><img src="delete-icon.png" alt="Delete" class="action-icon"></button>
-        <button class="action-button"><img src="edit-icon.png" alt="Edit" class="action-icon"></button>
+        <button class="action-button">
+          <i class="fa-regular fa-trash-can"></i>
+        <button class="action-button">
+          <i class="fa-solid fa-pen-to-square"></i> 
+        </button>
       </div>
       <div class="like-button">
-        <button class="action-button"><img src="paw-solid.svg" alt="Like" class="action-icon"></button>
+        <button class="action-button">
+          <i class="fa-solid fa-paw"></i> <!-- Agregamos el icono de pata -->
+          <i class="paw"></i> <!-- Usamos la clase paw para el icono -->
+        </button>
       </div>
       <div class="post-content">
         <h4 class="username">Nombre de Usuario</h4>
@@ -188,15 +195,19 @@
       </div>
     </div>
     <footer id="footer">
-      <button class="footer-button">Home</button>
+      <button class="footer-home">
+        <i class="fa-solid fa-house"></i>
+      </button>
       <div class="footer-profile">
         <div class="profile-image-container">
           <button class="profile-button">
-            <img src="path_to_image" alt="Profile Image">
+            <i class="fa-solid fa-paw" id="profile-icon"></i>
           </button>
           <div class="notification-dot"></div>
         </div>
-        <button class="footer-button">Profile</button>
+        <button class="footer-button">
+          <i class="fa-solid fa-dog"></i>
+        </button>
       </div>
     </footer>
     <!-- * Fin Vista 8 -->
@@ -208,6 +219,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword ,onAuthStateChanged,sendPasswordResetEmail} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
 import { getDatabase, ref, set, update } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+
 
 // Configura tu proyecto de Firebase (reemplaza con tu propia configuración)
 const firebaseConfig = {

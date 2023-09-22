@@ -522,14 +522,19 @@ p {
 .action-icon {
   width: 20px;
   height: 20px;
+  
 }
 
 .like-button {
   position: absolute;
   bottom: 10px;
   right: 10px;
+ 
 }
-
+.like-button .fa-paw {
+  color: #EC7B67; /* Cambia el color del icono de la pata según tu preferencia */
+  margin-right: 5px; /* Ajusta el margen derecho según tu diseño */
+}
 .post-content {
   padding: 10px;
 }
@@ -550,7 +555,9 @@ p {
   text-align: center;
 }
 
-
+.footer-button:active {
+  opacity: 0.7; /* Puedes ajustar la opacidad según tus preferencias */
+}
 #footer {
   background-color: #BAD265;
   padding: 20px;
@@ -559,13 +566,33 @@ p {
   align-items: center;
 }
 
+#profile-icon {
+  color: white; /* Cambia el color según tu preferencia */
+  margin-left: auto; /* Mueve el ícono a la mitad */
+  margin-right: auto; /* Mueve el ícono a la mitad */
+}
+#house-icon {
+  color:#0077B1; /* Cambia el color según tu preferencia */
+}
 .footer-button {
   background-color: transparent;
   border: none;
-  color: white;
-  font-size: 16px;
+  color: #0077B1;
+  font-size: 30px;
+  margin-left: 88px;
+  
+  /* Ajusta el valor negativo según sea necesario para mover a la izquierda */
 }
-
+.footer-home {
+  background-color: transparent;
+  border: none;
+  color: #0077B1;
+  font-size: 30px;
+   /* Ajusta el valor negativo según sea necesario para mover a la izquierda */
+}
+.footer-home:active {
+  opacity: 0.7; /* Puedes ajustar la opacidad según tus preferencias */
+}
 .footer-button:hover {
   text-decoration: underline;
 }
@@ -573,29 +600,41 @@ p {
 .footer-profile {
   display: flex;
   align-items: center; /* Centra los elementos verticalmente */
+   /* Centra verticalmente */
+  justify-content: center; 
+}
+.footer-button:profile {
+  opacity: 0.7; /* Puedes ajustar la opacidad según tus preferencias */
 }
 
 .profile-image-container {
   display: flex; /* Use flexbox to center items */
   align-items: center;
   margin-right: 10px;
-}
+  margin-top: -60px;
 
+}
+.profile-button:active {
+  opacity: 0.7;
+}
 .profile-button {
-  background-color: transparent;
+  position: absolute; /* Cambiamos a posición absoluta */
+  background-color: #EC7B67; /* Color de fondo */
   border: none;
   color: white;
-  font-size: 16px;
-  width: 50px;
-  height: 50px;
+  font-size: 30px;
   border-radius: 50%;
+  width: 50px; /* Ancho igual a la altura para formar un círculo perfecto */
+  height: 50px; 
+  display: flex; /* Usamos flexbox */
+  align-items: center; /* Centramos verticalmente */
+  justify-content: center; /* Centramos horizontalmente */
+   /* Ajustamos la posición desde abajo */
+  right: 50%; /* Posicionamos en la mitad del footer */
+  transform: translateX(50%); /* Centramos horizontalmente */
 }
 
-.profile-button img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-}
+
 
 .notification-dot {
   position: absolute;
