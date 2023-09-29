@@ -1,4 +1,5 @@
-import { auth, db } from '../lib/firebaseConfig';
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { auth } from '../lib/firebaseConfig';
 // acá deben traer las partes de firebaseconfig que les sirvan ( en este caso db y auth)
 // file principalRegister.js
 function principalRegister(navigateTo){
@@ -31,19 +32,16 @@ function principalRegister(navigateTo){
   btnGoogle.appendChild(imgGoogle);
   btnGoogle.textContent = 'Registrarse con Google';
 
-  btnGoogle.addEventListener("click", () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    // Inicio sesión
-    firebase.auth().signInWithPopup(provider)
-    .then((result) => {
-      // El usuario ha iniciado sesión con éxito
-      const user = result.user;
+  btnGoogle.addEventListener("click", async ()  => {
+    const provider = new GoogleAuthProvider();
+    // Iniciar sesion
+    try {
+      const credentials = await signInWithPopup(auth, provider);
+      const user = credentials.user;
       console.log(`Usuario autenticado: ${user.displayName}`);
-    })
-    .catch((error) => {
-      // Handle Errors aquí
-      console.error(`Error de inicio de sesión: ${error.message}`);
-    });
+    } catch (error) {
+      alert(error.message);
+    }
 });
 
   contenedorBtnSecundario.appendChild(pElement);
