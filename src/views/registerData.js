@@ -1,5 +1,5 @@
-import {createUserWithEmailAndPassword} from "firebase/auth"
-import {doc, setDoc} from "firebase/firestore"
+import {createUserWithEmailAndPassword} from "firebase/auth";
+import {doc, setDoc} from "firebase/firestore";
 import { auth, db } from "../lib/firebaseConfig.js";
 
 // file registerData.js
