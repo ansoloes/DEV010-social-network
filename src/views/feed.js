@@ -1,6 +1,10 @@
-// file feed.js
-//import {addPost} from "../lib/index";
-import { db } from '../lib/firebaseConfig.js';
+// // file feed.js
+import  {addPost, createPostElement, showPosts, getPosts}  from "../lib/index.js";
+
+// // importar firestore components maybe
+import {addDoc, collection, Timestamp, getDocs, query, orderBy, onSnapshot} from 'firebase/firestore';
+import navBar  from "./navBar.js"
+import { auth, db } from "../lib/firebaseConfig.js";
 
 
 function feed(navigateTo){
@@ -10,7 +14,8 @@ function feed(navigateTo){
    // const currentUserName = user?.displayName;
     const mainElement = document.createElement("main");
     mainElement.className = "main-8";
-  
+    
+    const user = auth.currentUser;
     //* Header
     const headerElement = document.createElement("header");
     headerElement.id = "header";
@@ -27,7 +32,7 @@ function feed(navigateTo){
     profileImage.className = "profile-image";
     const welcomeMessage = document.createElement("p");
     welcomeMessage.className = "welcome-message";
-    welcomeMessage.textContent = "Bienvenido/a, [Nombre de Usuario]";
+    welcomeMessage.textContent = "Bienvenido/a, " + user.displayName;
     const logoutButton = document.createElement("button");
     logoutButton.className = "logout-button";
     const logoutIcon = document.createElement("i");
@@ -42,70 +47,16 @@ function feed(navigateTo){
     //* Posting area
     const postingArea = document.createElement("section");
     postingArea.className = "posting-area";
-      // * Crear posts
-     // sectionPosts.appendChild(addPost())
-    // * La función onSnapshot escucha cambios en una consulta
-    // para actualizar el contenido del feed
-    //agregar funcion onsnap para poder  actualizar el feed en tiempo real
-    //const actual = query(collection(db, 'posts'), orderBy('date', 'desc')); //ordenado por date
-    // acá debería ir una función que sea como "postGenerator" que haga el contenido
 
-    //* Footer
-    const footerElement = document.createElement("footer");
+    // * Ver los Posts
+    getPosts((posts) => {
+
+      showPosts(posts, postingArea);
+    });
+
+    const footerElement = navBar(navigateTo, postingArea);
     footerElement.id = "footer";
-    const homeButton = document.createElement("button");
-    homeButton.className = "footer-home";
-    const homeIcon = document.createElement("i");
-    homeIcon.className = "fa-solid fa-house"; 
-    const profileButton = document.createElement("button");
-    profileButton.className = "profile-button";
-    const profileIcon = document.createElement("i");
-    profileIcon.className = "fa-solid fa-paw";
-    profileIcon.id = "profile-icon";
 
-    profileIcon.addEventListener("click", ()=>{
-      //Acá debería usar la función AddPost 
-      console.log("HEY")
-      const dialog = document.createElement("dialog");
-      dialog.open = true;
-      dialog.className = "dialog-posting"
-      
-      const btnSalir = document.createElement("i");
-      btnSalir.className ="fa-solid fa-xmark";
-      btnSalir.id = "exit-buttom"
-      btnSalir.addEventListener("click", ()=>{
-        dialog.open = false;
-      })
-      const inputCont = document.createElement("div");
-      const inputPost = document.createElement("textarea");
-      inputPost.className= "input-post-textarea";
-      const btndialog = document.createElement("button");
-      btndialog.innerHTML = "Publicar";
-      btndialog.className = "btn-principal";
-      btndialog.id = "btn-submit-post"
-
-      //El boton publicar debería trigerear la función add post con el contenido
-      dialog.appendChild(btnSalir);
-      dialog.appendChild(inputCont);
-      inputCont.appendChild(inputPost);
-      dialog.appendChild(btndialog);
-      postingArea.appendChild(dialog);
-
-    })
-    const dogButton = document.createElement("button");
-    dogButton.className = "footer-button";
-  
-    const dogIcon = document.createElement("i");
-    dogIcon.className = "fa-solid fa-dog";
-    // Agregar cosas
-    homeButton.appendChild(homeIcon);
-    profileButton.appendChild(profileIcon);
-    dogButton.appendChild(dogIcon);
-  
-    footerElement.appendChild(homeButton);
-    footerElement.appendChild(profileButton);
-    footerElement.appendChild(dogButton);
-  
     mainElement.appendChild(headerElement);
     mainElement.appendChild(postingArea);
     mainElement.appendChild(footerElement);

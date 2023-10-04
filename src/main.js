@@ -6,6 +6,7 @@ import error from './views/error.js';
 import login from './views/login.js';
 import feed from './views/feed.js';
 import forgotPassword from './views/forgotPassword.js'
+import profile from './views/profile.js';
 
 const routes = [
   { path: '/', component: welcome },
@@ -16,6 +17,7 @@ const routes = [
   { path: '/login', component: login },
   { path: '/feed', component: feed },
   { path: '/forgotPassword', component: forgotPassword },
+  { path: '/profile', component: profile },
 ];
 
 const defaultRoute = '/';

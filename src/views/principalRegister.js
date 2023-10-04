@@ -29,9 +29,11 @@ function principalRegister(navigateTo){
   const imgGoogle = document.createElement('img');
   imgGoogle.src = '../img/google.png';
   imgGoogle.alt = 'ícono Google';
+  const googleP = document.createElement('p');
+  googleP.textContent = 'Registrarse con Google';
   btnGoogle.appendChild(imgGoogle);
-  btnGoogle.textContent = 'Registrarse con Google';
-
+  btnGoogle.appendChild(googleP);
+  
   btnGoogle.addEventListener("click", async ()  => {
     const provider = new GoogleAuthProvider();
     // Iniciar sesion

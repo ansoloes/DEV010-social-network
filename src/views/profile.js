@@ -1,23 +1,70 @@
-const profile = (navigateTo) => {
+import  {addPost, createPostElement, showPosts, getPosts, showMyPosts}  from "../lib/index.js";
+
+
+// // importar firestore components maybe
+import {addDoc, collection, Timestamp, getDocs, query, orderBy, onSnapshot} from 'firebase/firestore';
+import navBar  from "./navBar.js"
+import { auth, db } from "../lib/firebaseConfig.js";
+
+function profile(navigateTo) {
+  const user = auth.currentUser;
+
   const mainElement = document.createElement("main");
   mainElement.className = "main-9";
 
-  // * Vista Header
+  //* Header
   const headerElement = document.createElement("header");
-    headerElement.id = "header";
-    headerElement.className = "vista-8-header";
-    const profileContainer = document.createElement("div");
-    profileContainer.className = "header-profile";
-    const profileImage = document.createElement("img");
-    profileImage.src = "img/dueña.jpg";
-    profileImage.alt = "Profile Picture";
-    profileImage.className = "profile-image";
-    const welcomeMessage = document.createElement("p");
-    welcomeMessage.className = "welcome-message";
-    welcomeMessage.textContent = "Bienvenido/a, [Nombre de Usuario]";
-    const logoutButton = document.createElement("button");
-    logoutButton.className = "logout-button";
-    const logoutIcon = document.createElement("i");
-    logoutIcon.className = "fa-solid fa-right-from-bracket";
-    logoutButton.appendChild(logoutIcon);
+  headerElement.id = "header";
+  headerElement.className = "vista-8-header";
+
+  const profileContainer = document.createElement("div");
+  profileContainer.className = "header-profile";
+
+  const profileImage = document.createElement("img");
+  profileImage.src = "img/dueña.jpg";
+  profileImage.alt = "Profile Picture";
+  profileImage.className = "profile-image";
+
+  const welcomeMessage = document.createElement("p");
+  welcomeMessage.className = "welcome-message";
+  welcomeMessage.textContent = 'Perfil de ' + user.displayName;
+
+  const logoutButton = document.createElement("button");
+  logoutButton.className = "logout-button";
+
+  const logoutIcon = document.createElement("i");
+  logoutIcon.className = "fa-solid fa-right-from-bracket";
+
+  logoutButton.appendChild(logoutIcon);
+
+  profileContainer.appendChild(profileImage);
+  profileContainer.appendChild(welcomeMessage);
+
+  headerElement.appendChild(profileContainer);
+  headerElement.appendChild(logoutButton);
+
+  //* Mis Posts
+  const tituloPosts = document.createElement("h2");
+  tituloPosts.className = "titulo-posts";
+  tituloPosts.textContent = "Mis posts";
+
+  const postingArea = document.createElement("section");
+  postingArea.className = "posting-area";
+
+  getPosts((posts) => {
+    showMyPosts(posts, postingArea);
+  });
+
+  //* Footer
+  const footerElement = navBar(navigateTo, postingArea); // Utiliza la función del footer que ya creaste
+  footerElement.id = "footer";
+
+  mainElement.appendChild(headerElement);
+  mainElement.appendChild(tituloPosts);
+  mainElement.appendChild(postingArea); // Agrega el contenedor de posts aquí
+  mainElement.appendChild(footerElement);
+
+  return mainElement;
 }
+
+export default profile;
