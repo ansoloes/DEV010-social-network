@@ -1,8 +1,8 @@
 // // file feed.js
-import  {addPost}  from "../lib/index.js";
+import  {addPost, createPostElement, showPosts, getPosts}  from "../lib/index.js";
 
 // // importar firestore components maybe
-// import {addDoc, collection, Timestamp, getDocs, query, orderBy} from 'firebase/firestore';
+import {addDoc, collection, Timestamp, getDocs, query, orderBy, onSnapshot} from 'firebase/firestore';
 import { auth, db } from "../lib/firebaseConfig.js";
 
 
@@ -13,7 +13,8 @@ function feed(navigateTo){
    // const currentUserName = user?.displayName;
     const mainElement = document.createElement("main");
     mainElement.className = "main-8";
-  
+    
+    const user = auth.currentUser;
     //* Header
     const headerElement = document.createElement("header");
     headerElement.id = "header";
@@ -30,7 +31,7 @@ function feed(navigateTo){
     profileImage.className = "profile-image";
     const welcomeMessage = document.createElement("p");
     welcomeMessage.className = "welcome-message";
-    welcomeMessage.textContent = "Bienvenido/a, [Nombre de Usuario]";
+    welcomeMessage.textContent = "Bienvenido/a, " + user.displayName;
     const logoutButton = document.createElement("button");
     logoutButton.className = "logout-button";
     const logoutIcon = document.createElement("i");
@@ -46,10 +47,11 @@ function feed(navigateTo){
     const postingArea = document.createElement("section");
     postingArea.className = "posting-area";
 
-    // * Crear posts
-    
-        // * La función onSnapshot escucha cambios en una consulta
+    // * Ver los Posts
+    getPosts((posts) => {
 
+      showPosts(posts, postingArea);
+    });
 
     //* Footer
     const footerElement = document.createElement("footer");

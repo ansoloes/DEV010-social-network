@@ -3,7 +3,7 @@ import {
 } from 'firebase/auth';
 
 import {
-  addDoc, collection, Timestamp, getDocs, query, orderBy,
+  addDoc, collection, Timestamp, getDocs, query, orderBy,onSnapshot
 } from 'firebase/firestore';
 
 import { db, auth } from './firebaseConfig.js';
@@ -20,8 +20,8 @@ const addPost = async (post) => {
       name,
       date,
       post,
-      userID,
-      like, // Almacenar el ID del usuario para poder reconocer los propios
+      userID, // Almacenar el ID del usuario para poder reconocer los propios
+      like:[], 
     });
   } else {
     
@@ -55,9 +55,10 @@ function getPosts(callback) {
   });
 }
 
+
 // generar elementos de los que consta un post
 // 
-const createPostElement = () => {
+const createPostElement = (post) => {
   const postContainer = document.createElement("div");
   postContainer.className = "post-container";
 
@@ -153,9 +154,9 @@ const updateDisplayName = async (newDisplayName) => {
   }
 };
 
-const showPosts = async (array) => {
+const showPosts = async (array, postingArea) => {
   // Limpiar el contenedor para evitar los duplicados
-  postsContainer.innerHTML = '';
+  postingArea.innerHTML = '';
   // Aplica la función de hacer elementos para cada elemento del array generando los elementos de posts y agregandolos al postArea
   array.forEach((post) => {
     const postElement = createPostElement(post); 
