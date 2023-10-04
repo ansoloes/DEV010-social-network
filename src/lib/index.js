@@ -3,7 +3,7 @@ import {
 } from 'firebase/auth';
 
 import {
-  addDoc, collection, Timestamp, getDocs, query, orderBy,onSnapshot
+  addDoc, collection, Timestamp, getDoc, query, orderBy,onSnapshot, doc, deleteDoc, updateDoc, arrayUnion, arrayRemove 
 } from 'firebase/firestore';
 
 import { db, auth } from './firebaseConfig.js';
@@ -74,25 +74,48 @@ const createPostElement = (post) => {
 
   const actions = document.createElement("div");
   actions.className = "actions";
+  if (post.userID === auth.currentUser.uid) {
+    const deleteButton = document.createElement("button");
+    deleteButton.className = "action-button";
 
-  const deleteButton = document.createElement("button");
-  deleteButton.className = "action-button";
+    const deleteIcon = document.createElement("i");
+    deleteIcon.className = "fa-regular fa-trash-can";
 
-  const deleteIcon = document.createElement("i");
-  deleteIcon.className = "fa-regular fa-trash-can";
+    deleteButton.appendChild(deleteIcon);
 
-  deleteButton.appendChild(deleteIcon);
+    const editButton = document.createElement("button");
+    editButton.className = "action-button";
 
-  const editButton = document.createElement("button");
-  editButton.className = "action-button";
+    const editIcon = document.createElement("i");
+    editIcon.className = "fa-solid fa-pen-to-square";
 
-  const editIcon = document.createElement("i");
-  editIcon.className = "fa-solid fa-pen-to-square";
+    editButton.appendChild(editIcon);
 
-  editButton.appendChild(editIcon);
+    actions.appendChild(deleteButton);
+    actions.appendChild(editButton);
+  
+    // Agrega un evento de clic al botón de edición
+    editButton.addEventListener("click", () => {
+      const newText = prompt("Edit your post:", post.post);
+      if (newText !== null) {
+        // Actualiza el contenido del post en Firestore
+        const postRef = doc(db, "posts", post.id);
+        updateDoc(postRef, { post: newText });
+      }
+    });
+  
+    // Agrega un evento de clic al botón de borrado
+    deleteButton.addEventListener("click", async () => {
+      const confirmDelete = confirm("Are you sure you want to delete this post?");
+      if (confirmDelete) {
+        // Elimina el post de Firestore
+        const postRef = doc(db, "posts", post.id);
+        await deleteDoc(postRef);
+      }
+    });
+  }
 
-  actions.appendChild(deleteButton);
-  actions.appendChild(editButton);
+  
 
   const likeButton = document.createElement("div");
   likeButton.className = "like-button";
@@ -105,6 +128,20 @@ const createPostElement = (post) => {
 
   const likeIconCustom = document.createElement("i");
   likeIconCustom.className = "paw";
+
+  likeButtonInner.addEventListener("click", async () => {
+    const postRef = doc(db, "posts", post.id);
+    const postSnapshot = await getDoc(postRef); 
+    const likesArray = postSnapshot.data().like || [];
+    
+    if (likesArray.includes(auth.currentUser.uid)) {
+      
+      await updateDoc(postRef, { like: arrayRemove(auth.currentUser.uid) });
+    } else {
+      
+      await updateDoc(postRef, { like: arrayUnion(auth.currentUser.uid) });
+    }
+  });
 
   likeButtonInner.appendChild(likeIconSolid);
   likeButtonInner.appendChild(likeIconCustom);
@@ -163,6 +200,18 @@ const showPosts = async (array, postingArea) => {
     postingArea.appendChild(postElement);
   });
 };
+const showMyPosts = async (posts, postingArea) => {
+  const user = auth.currentUser;
+
+  const myPosts = posts.filter((post) => post.userID === user.uid);
+ 
+  postingArea.innerHTML = '';
+
+  myPosts.forEach((post) => {
+    const postElement = createPostElement(post);
+    postingArea.appendChild(postElement);
+  });
+};
 
 
 export {
@@ -171,4 +220,5 @@ export {
   createPostElement,
   showPosts,
   updateDisplayName,
+  showMyPosts
 };

@@ -1,15 +1,19 @@
 //* Footer
-function navBar() {
+function navBar(navigateTo, postingArea) {
   const footerElement = document.createElement("footer");
   footerElement.id = "footer";
   const homeButton = document.createElement("button");
   homeButton.className = "footer-home";
   const homeIcon = document.createElement("i");
   homeIcon.className = "fa-solid fa-house"; 
-  // add event home icon to  feed view
+
+  homeButton.addEventListener("click", () => {
+    navigateTo('/feed')
+  });
+  
   const profileButton = document.createElement("button");
   profileButton.className = "profile-button";
-  // add event profile buttom to profile view
+
   const pawIcon = document.createElement("i");
   pawIcon.className = "fa-solid fa-paw";
   pawIcon.id = "profile-icon";
@@ -36,10 +40,10 @@ function navBar() {
 
     btndialog.addEventListener("click", () => {
       const postContent = inputPost.value.trim(); 
-      // Obtén el contenido del textarea
+      //  contenido del textarea
       console.log(inputPost.value)
       if (postContent === "") {
-      // Si el textarea está vacío, cierra el diálogo
+      // Si el textarea está vacio, cierra el dialog
       console.log("vacío");
       dialog.close();
       console.log(dialog.open)  
@@ -50,7 +54,6 @@ function navBar() {
       dialog.close();
       // animación cargando 
       })
-      // Luego, cierra el diálogo si es necesario.
       
       }
   });
@@ -62,6 +65,10 @@ function navBar() {
 
   const dogIcon = document.createElement("i");
   dogIcon.className = "fa-solid fa-dog";
+
+  dogButton.addEventListener("click", () => {
+    navigateTo('/profile')
+  });
   // Agregar cosas
   homeButton.appendChild(homeIcon);
   profileButton.appendChild(pawIcon);
