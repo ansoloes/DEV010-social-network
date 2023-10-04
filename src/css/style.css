@@ -657,7 +657,6 @@ p {
 }
 .dialog-posting {
   position:absolute;
-  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -666,6 +665,7 @@ p {
   border: none;
   top: 42rem;
 }
+
 .posting-area {
   width: 100%;
 

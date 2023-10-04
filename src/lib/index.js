@@ -6,10 +6,10 @@ import {
   addDoc, collection, Timestamp, getDocs, query, orderBy,
 } from 'firebase/firestore';
 
-import { db, auth } from '..lib/firebaseConfig.js';
+import { db, auth } from './firebaseConfig.js';
 
 // añadir post a la db
-const addPost = async (title, post) => {
+const addPost = async (post) => {
   const user = auth.currentUser;
   if (user) {
     const name = user.displayName;
@@ -19,15 +19,16 @@ const addPost = async (title, post) => {
     await addDoc(postsCollection, {
       name,
       date,
-      title,
       post,
-      userID, // Almacenar el ID del usuario para poder reconocer los propios
+      userID,
+      like, // Almacenar el ID del usuario para poder reconocer los propios
     });
   } else {
-    // El usuario no está autenticado
+    
+    console.log("no estás autenticado hermano, vete")
     //! Podríamos hacer un dialog que diga "Oops! no estás autorizado Inicia Sesión o Registrate (botones)"
   }
-};
+}
 
 // obtener posts de la db
 function getPosts(callback) {
@@ -56,7 +57,7 @@ function getPosts(callback) {
 
 // generar elementos de los que consta un post
 // 
-const createPostElement = async (array) => {
+const createPostElement = () => {
   const postContainer = document.createElement("div");
   postContainer.className = "post-container";
 
@@ -136,15 +137,6 @@ const createPostElement = async (array) => {
   return postContainer;
 };
 
-const showPosts = async (array) => {
-  // Limpiar el contenedor para evitar los duplicados
-  postsContainer.innerHTML = '';
-  // Aplica la función de hacer elementos para cada elemento del array generando los elementos de posts y agregandolos al postArea
-  array.forEach((post) => {
-    const postElement = createPostElement(post); 
-    postingArea.appendChild(postElement);
-  });
-};
 
 const updateDisplayName = async (newDisplayName) => {
   try {
@@ -161,7 +153,15 @@ const updateDisplayName = async (newDisplayName) => {
   }
 };
 
-
+const showPosts = async (array) => {
+  // Limpiar el contenedor para evitar los duplicados
+  postsContainer.innerHTML = '';
+  // Aplica la función de hacer elementos para cada elemento del array generando los elementos de posts y agregandolos al postArea
+  array.forEach((post) => {
+    const postElement = createPostElement(post); 
+    postingArea.appendChild(postElement);
+  });
+};
 
 
 export {

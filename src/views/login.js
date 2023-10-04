@@ -48,8 +48,12 @@ function login(navigateTo) {
     const imgGoogle = document.createElement("img");
     imgGoogle.src = "../img/google.png";
     imgGoogle.alt = "ícono Google";
+    const googleP = document.createElement('p');
+    googleP.textContent = 'Iniciar con Google';
+
     btnIniciarConGoogle.appendChild(imgGoogle);
-    btnIniciarConGoogle.textContent = "Iniciar con Google";
+    btnIniciarConGoogle.appendChild(googleP);
+
 
     btnIniciarConGoogle.addEventListener("click", () => {
       const provider = new GoogleAuthProvider();
@@ -63,7 +67,7 @@ function login(navigateTo) {
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          // Handle errors aquí, por ejemplo, mostrar un mensaje de error
+         
           alert(errorMessage);
         });
     });

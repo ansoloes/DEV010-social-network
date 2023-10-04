@@ -1,6 +1,9 @@
-// file feed.js
-//import {addPost} from "../lib/index";
-import { db } from '../lib/firebaseConfig.js';
+// // file feed.js
+import  {addPost}  from "../lib/index.js";
+
+// // importar firestore components maybe
+// import {addDoc, collection, Timestamp, getDocs, query, orderBy} from 'firebase/firestore';
+import { auth, db } from "../lib/firebaseConfig.js";
 
 
 function feed(navigateTo){
@@ -42,13 +45,11 @@ function feed(navigateTo){
     //* Posting area
     const postingArea = document.createElement("section");
     postingArea.className = "posting-area";
-      // * Crear posts
-     // sectionPosts.appendChild(addPost())
-    // * La función onSnapshot escucha cambios en una consulta
-    // para actualizar el contenido del feed
-    //agregar funcion onsnap para poder  actualizar el feed en tiempo real
-    //const actual = query(collection(db, 'posts'), orderBy('date', 'desc')); //ordenado por date
-    // acá debería ir una función que sea como "postGenerator" que haga el contenido
+
+    // * Crear posts
+    
+        // * La función onSnapshot escucha cambios en una consulta
+
 
     //* Footer
     const footerElement = document.createElement("footer");
@@ -57,25 +58,20 @@ function feed(navigateTo){
     homeButton.className = "footer-home";
     const homeIcon = document.createElement("i");
     homeIcon.className = "fa-solid fa-house"; 
+    // add event home icon to  feed view
     const profileButton = document.createElement("button");
     profileButton.className = "profile-button";
-    const profileIcon = document.createElement("i");
-    profileIcon.className = "fa-solid fa-paw";
-    profileIcon.id = "profile-icon";
+    // add event profile buttom to profile view
+    const pawIcon = document.createElement("i");
+    pawIcon.className = "fa-solid fa-paw";
+    pawIcon.id = "profile-icon";
 
-    profileIcon.addEventListener("click", ()=>{
-      //Acá debería usar la función AddPost 
-      console.log("HEY")
+    pawIcon.addEventListener("click", ()=>{
+      //TODO: Acá debería usar la función AddPost 
       const dialog = document.createElement("dialog");
-      dialog.open = true;
-      dialog.className = "dialog-posting"
-      
-      const btnSalir = document.createElement("i");
-      btnSalir.className ="fa-solid fa-xmark";
-      btnSalir.id = "exit-buttom"
-      btnSalir.addEventListener("click", ()=>{
-        dialog.open = false;
-      })
+      dialog.show();
+      dialog.className = "dialog-posting";
+
       const inputCont = document.createElement("div");
       const inputPost = document.createElement("textarea");
       inputPost.className= "input-post-textarea";
@@ -84,14 +80,35 @@ function feed(navigateTo){
       btndialog.className = "btn-principal";
       btndialog.id = "btn-submit-post"
 
-      //El boton publicar debería trigerear la función add post con el contenido
-      dialog.appendChild(btnSalir);
+     //El boton publicar debería trigerear la función add post con el contenido
+     //dialog.appendChild(btnSalir);
       dialog.appendChild(inputCont);
       inputCont.appendChild(inputPost);
       dialog.appendChild(btndialog);
-      postingArea.appendChild(dialog);
 
+      btndialog.addEventListener("click", () => {
+        const postContent = inputPost.value.trim(); 
+        // Obtén el contenido del textarea
+        console.log(inputPost.value)
+        if (postContent === "") {
+        // Si el textarea está vacío, cierra el diálogo
+        console.log("vacío");
+        dialog.close();
+        console.log(dialog.open)  
+        } else {
+          console.log("Hay contenido")
+        // Si hay contenido, realizar acción 
+        addPost(inputPost.value).then(()=>{
+        dialog.close();
+        // animación cargando 
+        })
+        // Luego, cierra el diálogo si es necesario.
+        
+        }
+    });
+      postingArea.appendChild(dialog);
     })
+
     const dogButton = document.createElement("button");
     dogButton.className = "footer-button";
   
@@ -99,7 +116,7 @@ function feed(navigateTo){
     dogIcon.className = "fa-solid fa-dog";
     // Agregar cosas
     homeButton.appendChild(homeIcon);
-    profileButton.appendChild(profileIcon);
+    profileButton.appendChild(pawIcon);
     dogButton.appendChild(dogIcon);
   
     footerElement.appendChild(homeButton);
