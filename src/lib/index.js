@@ -6,29 +6,26 @@ import {
   addDoc, collection, Timestamp, getDocs, query, orderBy,
 } from 'firebase/firestore';
 
-import { db, auth } from '..lib/firebaseConfig.js';
+import { db, auth } from './firebaseConfig.js';
 
 // añadir post a la db
-const addPost = async (title, post) => {
+const addPost = async (post) => {
   const user = auth.currentUser;
   if (user) {
     const name = user.displayName;
-    const userID = user.uid;
-    const date = Timestamp.now().toDate().toLocaleString();
+    const date = Timestamp.now();
     const postsCollection = collection(db, 'posts');
     await addDoc(postsCollection, {
       name,
-      date,
-      title,
       post,
-      userID, // Almacenar el ID del usuario para poder reconocer los propios
+      date,
+      likes: [],
+      likesCount: 0,
     });
   } else {
-    // El usuario no está autenticado
-    //! Podríamos hacer un dialog que diga "Oops! no estás autorizado Inicia Sesión o Registrate (botones)"
+    console.error('User is not logged in.'); // Handle the case when user is not logged in
   }
 };
-
 // obtener posts de la db
 function getPosts(callback) {
   const postsCollection = collection(db, 'posts');
@@ -171,3 +168,4 @@ export {
   showPosts,
   updateDisplayName,
 };
+
