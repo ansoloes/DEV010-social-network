@@ -125,7 +125,7 @@ const createPostElement = (post) => {
   likeIconSolid.className = "fa-solid fa-paw";
 
   const likeIconRegular = document.createElement("i");
-  likeIconRegular.className = "fa-regular fa-paw";
+  likeIconRegular.className = "fa-thin fa-paw";
 
   const likeCount = document.createElement("span");
   likeCount.className = "like-count";
