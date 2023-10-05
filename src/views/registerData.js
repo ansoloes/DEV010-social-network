@@ -1,6 +1,10 @@
-import {createUserWithEmailAndPassword} from "firebase/auth";
+import {createUserWithEmailAndPassword, updateProfile, updateCurrentUser} from "firebase/auth";
 import {doc, setDoc} from "firebase/firestore";
 import { auth, db } from "../lib/firebaseConfig.js";
+
+const updateName = async (completeUserName) => {
+  await updateProfile(auth.currentUser, { displayName: completeUserName });
+};
 
 // file registerData.js
 function registerData(navigateTo) {
@@ -70,35 +74,34 @@ function registerData(navigateTo) {
 
     createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      // Usuario registrado exitosamente, puedes realizar acciones adicionales aquí
       const user = userCredential.user;
 
-      // Información adicional firestore, esto se guarda en documentos
       const userDocRef = doc(db, 'users', user.uid);
       const userData = {
         email: email,
-        displayName: username,
+        username: username, 
         password: password,
       };
       
-      setDoc(userDocRef, userData)
-      .then(() => {
-        alert('Usuario creado exitosamente.');
-      })
-      .catch((error) => {
-        console.error('Error al almacenar datos en Firestore:', error);
-      });
-
-      alert('Usuario creado exitosamente.');
-
-      // Ve a la siguiente vista
-      navigateTo('/registerPassword');
-      
+      return setDoc(userDocRef, userData)
+        .then(() => {
+          return updateName(username);
+        })
+        .then(() => {
+          alert('Usuario creado exitosamente.');
+        })
+        .catch((error) => {
+          console.error('Error al almacenar datos en Firestore:', error);
+        })
+        .finally(() => {
+          // Ve a la siguiente vista
+          navigateTo('/registerPassword');
+        });
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      // Handle errors aquí, por ejemplo, mostrar un mensaje de error
+      // Handle errors 
       alert(errorMessage);
     });
 

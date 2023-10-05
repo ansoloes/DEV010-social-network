@@ -1,5 +1,5 @@
 // file login.js
-import { doc, setDoc} from 'firebase/firestore'
+import { doc, setDoc, getDoc} from 'firebase/firestore'
 import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { auth, db } from "../lib/firebaseConfig.js";
 
@@ -76,40 +76,45 @@ function login(navigateTo) {
     btnIniciarSesion.className = "btn-principal";
     btnIniciarSesion.textContent = "Iniciar Sesión";
 
-    btnIniciarSesion.addEventListener('click', () => {
+    btnIniciarSesion.addEventListener('click', async () => {
       const email = document.getElementById('correo').value;
       const password = document.getElementById('contraseña').value;
-  
-      signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          const user = userCredential.user;
-          //verificar usuario
-          if (user) {
-            const userDocRef = doc(db, 'users', user.uid);
+    
+      try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+    
+        // Verificar si el usuario existe
+        if (user) {
+          const userDocRef = doc(db, 'users', user.uid);
+    
+          // Obtener datos existentes
+          const userDocActual = await getDoc(userDocRef);
+          if (userDocActual.exists()) {
+            const userData = userDocActual.data();
+    
+            // Actualizar solo el campo last_login
             const dt = new Date();
-            const userData = {
-              last_login: dt,
-              // Otras propiedades actualizadas aquí si es necesario
-            };
-            setDoc(userDocRef, userData)
-              .then(() => {
-                alert('Usuario inició sesión exitosamente.');
-                // ... Realiza cualquier acción adicional después del inicio de sesión
-                navigateTo('/feed'); // Ir a la siguiente vista
-              })
-              .catch((error) => {
-                console.error('Error al actualizar datos en Firestore:', error);
-              });
+            userData.last_login = dt;
+    
+            // Escribir los datos actualizados 
+            await setDoc(userDocRef, userData);
+    
+            alert('Usuario inició sesión exitosamente.');
+    
+            navigateTo('/feed'); // Ir a la siguiente vista
           } else {
-            console.error('Usuario no autenticado');
+            console.error('El documento del usuario no existe en Firestore.');
           }
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          // Maneja los errores aquí, por ejemplo, muestra un mensaje de error
-          alert(errorMessage);
-        });
+        } else {
+          console.error('Usuario no autenticado');
+        }
+      } catch (error) {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        
+        alert(errorMessage);
+      }
     });
   
     const linkOlvidasteContraseña = document.createElement("a");

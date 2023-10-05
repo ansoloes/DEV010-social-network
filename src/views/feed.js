@@ -1,17 +1,12 @@
-
 import  { showPosts, getPosts }  from "../lib/index.js";
-import { signOut } from "firebase/auth";
+import { signOut, onAuthStateChanged } from "firebase/auth";
 import navBar  from "./navBar.js"
 import { auth, db } from "../lib/firebaseConfig.js";
-
-
 function feed(navigateTo){
+
     const mainElement = document.createElement("main");
     mainElement.className = "main-8";
-    
     const user = auth.currentUser;
-    
-
     //* Header
     const headerElement = document.createElement("header");
     headerElement.id = "header";
@@ -26,15 +21,28 @@ function feed(navigateTo){
     profileImage.src = "img/dueña.jpg";
     profileImage.alt = "Profile Picture";
     profileImage.className = "profile-image";
-    const welcomeMessage = document.createElement("p");
-    welcomeMessage.className = "welcome-message";
-    welcomeMessage.textContent = "Bienvenido/a, " + user.displayName;
+
+    // const welcomeMessage = document.createElement("p");
+    // welcomeMessage.className = "welcome-message";
+    // welcomeMessage.textContent = "Bienvenido/a, " + user.displayName;
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log(user)
+        const welcomeMessage = document.createElement("p");
+        welcomeMessage.className = "welcome-message";
+        welcomeMessage.textContent = "Bienvenido/a, " + user.displayName;
+  
+        
+        profileContainer.appendChild(profileImage);
+        profileContainer.appendChild(welcomeMessage);
+      } 
+    });
 
     const logoutButton = document.createElement("button");
     logoutButton.className = "logout-button";
     const logoutIcon = document.createElement("i");
     logoutIcon.className = "fa-solid fa-right-from-bracket";
-
     logoutButton.addEventListener("click", async () => {
       try {
         await signOut(auth);
@@ -44,10 +52,9 @@ function feed(navigateTo){
         alert(error);
       }
     });
-
     logoutButton.appendChild(logoutIcon);
     profileContainer.appendChild(profileImage);
-    profileContainer.appendChild(welcomeMessage);
+    //profileContainer.appendChild(welcomeMessage);
     headerElement.appendChild(logoImage);
     headerElement.appendChild(profileContainer);
     headerElement.appendChild(logoutButton);
