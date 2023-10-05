@@ -1,8 +1,6 @@
-import  {addPost, createPostElement, showPosts, getPosts, showMyPosts}  from "../lib/index.js";
+import  {getPosts, showMyPosts}  from "../lib/index.js";
 
-
-// // importar firestore components maybe
-import {addDoc, collection, Timestamp, getDocs, query, orderBy, onSnapshot} from 'firebase/firestore';
+import { signOut } from "firebase/auth";
 import navBar  from "./navBar.js"
 import { auth, db } from "../lib/firebaseConfig.js";
 
@@ -36,6 +34,16 @@ function profile(navigateTo) {
   logoutIcon.className = "fa-solid fa-right-from-bracket";
 
   logoutButton.appendChild(logoutIcon);
+
+  logoutButton.addEventListener("click", async () => {
+    try {
+      await signOut(auth);
+      localStorage.removeItem('user');
+      navigateTo('/login');
+    } catch (error) {
+      alert(error);
+    }
+  });
 
   profileContainer.appendChild(profileImage);
   profileContainer.appendChild(welcomeMessage);
