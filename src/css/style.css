@@ -542,8 +542,13 @@ p {
   right: 10px;
 }
 
-.like-button .fa-paw {
-  color: #EC7B67; /* Cambia el color del icono de la pata según tu preferencia */
+#like {
+  color: var(--fuente); /* Cambia el color del icono de la pata según tu preferencia */
+  font-size: 2.4rem;
+}
+
+#like-active {
+  color: var(--color-acento);
   font-size: 2.4rem;
 }
 
