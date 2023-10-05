@@ -13,11 +13,11 @@ const addPost = async (post) => {
   const user = auth.currentUser;
   if (user) {
     const name = user.displayName;
-    const date = Timestamp.now();
+    const userID = user.uid;
+    const date = Timestamp.now().toDate().toLocaleString();
     const postsCollection = collection(db, 'posts');
     await addDoc(postsCollection, {
       name,
-      post,
       date,
       post,
       userID, // Almacenar el ID del usuario para poder reconocer los propios
@@ -35,7 +35,7 @@ function getPosts(callback) {
   const postsCollection = collection(db, 'posts');
 
   // Querry consulta para obtener todos los documentos en la colección "posts"
-  const q = query(postsCollection, orderBy('date', 'desc'))
+  const q = query(postsCollection, orderBy('date', 'asc'))
 
   // Utiliza onSnapshot para escuchar cambios en la colección
   onSnapshot(q, (querySnapshot) => {
@@ -115,8 +115,6 @@ const createPostElement = (post) => {
     });
   }
 
-  
-
   const likeButton = document.createElement("div");
   likeButton.className = "like-button";
 
@@ -124,28 +122,38 @@ const createPostElement = (post) => {
   likeButtonInner.className = "action-button";
 
   const likeIconSolid = document.createElement("i");
-  likeIconSolid.className = "fa-solid fa-paw";
+  likeIconSolid.classList = 'fa-solid fa-paw';
+  likeIconSolid.id = "like";
 
-  const likeIconCustom = document.createElement("i");
-  likeIconCustom.className = "paw";
+  // const likeIconRegular = document.createElement("i");
+  // likeIconRegular.className = "fa-regular fa-heart";
+
+  const likeCount = document.createElement("span");
+  likeCount.className = "like-count";
+  likeCount.textContent = post.like.length; // conteo likes
 
   likeButtonInner.addEventListener("click", async () => {
     const postRef = doc(db, "posts", post.id);
-    const postSnapshot = await getDoc(postRef); 
+    const postSnapshot = await getDoc(postRef);
     const likesArray = postSnapshot.data().like || [];
-    
+
     if (likesArray.includes(auth.currentUser.uid)) {
-      
       await updateDoc(postRef, { like: arrayRemove(auth.currentUser.uid) });
     } else {
-      
       await updateDoc(postRef, { like: arrayUnion(auth.currentUser.uid) });
     }
   });
 
   likeButtonInner.appendChild(likeIconSolid);
-  likeButtonInner.appendChild(likeIconCustom);
+  // Verifica si el usuario le ha dado like
+  if (post.like.includes(auth.currentUser.uid)) {
+    likeIconSolid.id = 'like-active';
+  } else {
+    likeIconSolid.id = 'like';
+  }
+
   likeButton.appendChild(likeButtonInner);
+  likeButton.appendChild(likeCount);
 
   const postContent = document.createElement("div");
   postContent.className = "post-content";
@@ -175,15 +183,13 @@ const createPostElement = (post) => {
   return postContainer;
 };
 
-
+// creo que esto hay que usar para el profile custom
 const updateDisplayName = async (newDisplayName) => {
   try {
     // Actualiza el nombre de usuario con el current user
     await updateProfile(auth.currentUser, {
       displayName: newDisplayName,
     });
-
-    // Devuelve true si la actualización se realizó correctamente
     return true;
   } catch (error) {
     
@@ -222,4 +228,3 @@ export {
   updateDisplayName,
   showMyPosts
 };
-
