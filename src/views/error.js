@@ -24,8 +24,7 @@ function error(navigateTo) {
     mainElement.appendChild(contenedorTexto404);
   
     return mainElement;
-    // // Agregar la vista generada al body
-    // document.body.appendChild(mainElement);
+  
   }
   
   export default error;

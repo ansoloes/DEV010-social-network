@@ -77,8 +77,8 @@ function registerData(navigateTo) {
       const userDocRef = doc(db, 'users', user.uid);
       const userData = {
         email: email,
-        username: username,
-        password: password
+        displayName: username,
+        password: password,
       };
       
       setDoc(userDocRef, userData)
