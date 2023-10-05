@@ -1,3 +1,5 @@
+import  {addPost}  from "../lib/index.js";
+import { auth} from "../lib/firebaseConfig.js";
 //* Footer
 function navBar(navigateTo, postingArea) {
   const footerElement = document.createElement("footer");
@@ -39,20 +41,18 @@ function navBar(navigateTo, postingArea) {
     dialog.appendChild(btndialog);
 
     btndialog.addEventListener("click", () => {
+      console.log(auth.currentUser)
       const postContent = inputPost.value.trim(); 
-      //  contenido del textarea
-      console.log(inputPost.value)
       if (postContent === "") {
-      // Si el textarea está vacio, cierra el dialog
       console.log("vacío");
       dialog.close();
       console.log(dialog.open)  
       } else {
         console.log("Hay contenido")
-      // Si hay contenido, realizar acción 
+
       addPost(inputPost.value).then(()=>{
       dialog.close();
-      // animación cargando 
+
       })
       
       }
