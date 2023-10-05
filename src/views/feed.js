@@ -58,18 +58,24 @@ function feed(navigateTo){
     headerElement.appendChild(logoImage);
     headerElement.appendChild(profileContainer);
     headerElement.appendChild(logoutButton);
+
     //* Posting area
     const postingArea = document.createElement("section");
     postingArea.className = "posting-area";
+
     // * Ver los Posts
     getPosts((posts) => {
+
       showPosts(posts, postingArea);
     });
+
     const footerElement = navBar(navigateTo, postingArea);
     footerElement.id = "footer";
+
     mainElement.appendChild(headerElement);
     mainElement.appendChild(postingArea);
     mainElement.appendChild(footerElement);
+  
     return mainElement;
   }
   export default feed;

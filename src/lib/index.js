@@ -13,11 +13,11 @@ const addPost = async (post) => {
   const user = auth.currentUser;
   if (user) {
     const name = user.displayName;
-    const date = Timestamp.now();
+    const userID = user.uid;
+    const date = Timestamp.now().toDate().toLocaleString();
     const postsCollection = collection(db, 'posts');
     await addDoc(postsCollection, {
       name,
-      post,
       date,
       post,
       userID, // Almacenar el ID del usuario para poder reconocer los propios
@@ -122,10 +122,11 @@ const createPostElement = (post) => {
   likeButtonInner.className = "action-button";
 
   const likeIconSolid = document.createElement("i");
-  likeIconSolid.className = "fa-solid fa-paw";
+  likeIconSolid.classList = 'fa-solid fa-paw';
+  likeIconSolid.id = "like";
 
-  const likeIconRegular = document.createElement("i");
-  likeIconRegular.className = "fa-thin fa-paw";
+  // const likeIconRegular = document.createElement("i");
+  // likeIconRegular.className = "fa-regular fa-heart";
 
   const likeCount = document.createElement("span");
   likeCount.className = "like-count";
@@ -143,11 +144,12 @@ const createPostElement = (post) => {
     }
   });
 
+  likeButtonInner.appendChild(likeIconSolid);
   // Verifica si el usuario le ha dado like
   if (post.like.includes(auth.currentUser.uid)) {
-    likeButtonInner.appendChild(likeIconSolid);
+    likeIconSolid.id = 'like-active';
   } else {
-    likeButtonInner.appendChild(likeIconRegular);
+    likeIconSolid.id = 'like';
   }
 
   likeButton.appendChild(likeButtonInner);
@@ -226,4 +228,3 @@ export {
   updateDisplayName,
   showMyPosts
 };
-
