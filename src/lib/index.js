@@ -13,11 +13,11 @@ const addPost = async (post) => {
   const user = auth.currentUser;
   if (user) {
     const name = user.displayName;
-    const userID = user.uid;
-    const date = Timestamp.now().toDate().toLocaleString();
+    const date = Timestamp.now();
     const postsCollection = collection(db, 'posts');
     await addDoc(postsCollection, {
       name,
+      post,
       date,
       post,
       userID, // Almacenar el ID del usuario para poder reconocer los propios
@@ -222,3 +222,4 @@ export {
   updateDisplayName,
   showMyPosts
 };
+
