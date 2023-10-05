@@ -1,81 +1,75 @@
-import  { showPosts, getPosts }  from "../lib/index.js";
-import { signOut, onAuthStateChanged } from "firebase/auth";
-import navBar  from "./navBar.js"
-import { auth, db } from "../lib/firebaseConfig.js";
-function feed(navigateTo){
+import { signOut, onAuthStateChanged } from 'firebase/auth';
+import { showPosts, getPosts } from '../lib/index.js';
+import navBar from './navBar.js';
+import { auth } from '../lib/firebaseConfig.js';
 
-    const mainElement = document.createElement("main");
-    mainElement.className = "main-8";
-    const user = auth.currentUser;
-    //* Header
-    const headerElement = document.createElement("header");
-    headerElement.id = "header";
-    headerElement.className = "vista-8-header";
-    const logoImage = document.createElement("img");
-    logoImage.src = "img/oplogo.png";
-    logoImage.alt = "Logo";
-    logoImage.className = "header-logo";
-    const profileContainer = document.createElement("div");
-    profileContainer.className = "header-profile";
-    const profileImage = document.createElement("img");
-    profileImage.src = "img/dueña.jpg";
-    profileImage.alt = "Profile Picture";
-    profileImage.className = "profile-image";
+function feed(navigateTo) {
+  const mainElement = document.createElement('main');
+  mainElement.className = 'main-8';
 
-    // const welcomeMessage = document.createElement("p");
-    // welcomeMessage.className = "welcome-message";
-    // welcomeMessage.textContent = "Bienvenido/a, " + user.displayName;
+  //* Header
+  const headerElement = document.createElement('header');
+  headerElement.id = 'header';
+  headerElement.className = 'vista-8-header';
+  const logoImage = document.createElement('img');
+  logoImage.src = 'img/oplogo.png';
+  logoImage.alt = 'Logo';
+  logoImage.className = 'header-logo';
+  const profileContainer = document.createElement('div');
+  profileContainer.className = 'header-profile';
+  const profileImage = document.createElement('img');
+  profileImage.src = 'img/dueña.jpg';
+  profileImage.alt = 'Profile Picture';
+  profileImage.className = 'profile-image';
 
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        console.log(user)
-        const welcomeMessage = document.createElement("p");
-        welcomeMessage.className = "welcome-message";
-        welcomeMessage.textContent = "Bienvenido/a, " + user.displayName;
-  
-        
-        profileContainer.appendChild(profileImage);
-        profileContainer.appendChild(welcomeMessage);
-      } 
-    });
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      console.log(user);
+      const welcomeMessage = document.createElement('p');
+      welcomeMessage.className = 'welcome-message';
+      welcomeMessage.textContent = `Bienvenido/a, ${user.displayName}`;
 
-    const logoutButton = document.createElement("button");
-    logoutButton.className = "logout-button";
-    const logoutIcon = document.createElement("i");
-    logoutIcon.className = "fa-solid fa-right-from-bracket";
-    logoutButton.addEventListener("click", async () => {
-      try {
-        await signOut(auth);
-        localStorage.removeItem('user');
-        navigateTo('/login');
-      } catch (error) {
-        alert(error);
-      }
-    });
-    logoutButton.appendChild(logoutIcon);
-    profileContainer.appendChild(profileImage);
-    //profileContainer.appendChild(welcomeMessage);
-    headerElement.appendChild(logoImage);
-    headerElement.appendChild(profileContainer);
-    headerElement.appendChild(logoutButton);
+      profileContainer.appendChild(profileImage);
+      profileContainer.appendChild(welcomeMessage);
+    }
+  });
 
-    //* Posting area
-    const postingArea = document.createElement("section");
-    postingArea.className = "posting-area";
+  const logoutButton = document.createElement('button');
+  logoutButton.className = 'logout-button';
+  const logoutIcon = document.createElement('i');
+  logoutIcon.className = 'fa-solid fa-right-from-bracket';
+  logoutButton.addEventListener('click', async () => {
+    try {
+      await signOut(auth);
+      localStorage.removeItem('user');
+      navigateTo('/login');
+    } catch (error) {
+      alert(error);
+    }
+  });
+  logoutButton.appendChild(logoutIcon);
+  profileContainer.appendChild(profileImage);
 
-    // * Ver los Posts
-    getPosts((posts) => {
+  headerElement.appendChild(logoImage);
+  headerElement.appendChild(profileContainer);
+  headerElement.appendChild(logoutButton);
 
-      showPosts(posts, postingArea);
-    });
+  //* Posting area
+  const postingArea = document.createElement('section');
+  postingArea.className = 'posting-area';
 
-    const footerElement = navBar(navigateTo, postingArea);
-    footerElement.id = "footer";
+  // * Ver los Posts
+  getPosts((posts) => {
+    showPosts(posts, postingArea);
+  });
 
-    mainElement.appendChild(headerElement);
-    mainElement.appendChild(postingArea);
-    mainElement.appendChild(footerElement);
-  
-    return mainElement;
-  }
-  export default feed;
+  const footerElement = navBar(navigateTo, postingArea);
+  footerElement.id = 'footer';
+
+  mainElement.appendChild(headerElement);
+  mainElement.appendChild(postingArea);
+  mainElement.appendChild(footerElement);
+
+  return mainElement;
+}
+export default feed;
