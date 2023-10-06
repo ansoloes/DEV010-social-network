@@ -33,6 +33,12 @@ function navBar(navigateTo, postingArea) {
     btndialog.className = 'btn-principal';
     btndialog.id = 'btn-submit-post';
 
+    const btnCloseDialog = document.createElement('button');
+    const iconX = document.createElement('i');
+    iconX.classList = 'fa-solid fa-x';
+    btnCloseDialog.appendChild(iconX);
+    dialog.appendChild(btnCloseDialog);
+
     // El boton publicar debería trigerear la función add post con el contenido
     // dialog.appendChild(btnSalir);
     dialog.appendChild(inputCont);
@@ -53,6 +59,11 @@ function navBar(navigateTo, postingArea) {
         });
       }
     });
+
+    btnCloseDialog.addEventListener('click', () => {
+      dialog.close();
+    });
+
     postingArea.appendChild(dialog);
   });
 
