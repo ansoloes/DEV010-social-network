@@ -1,7 +1,6 @@
 import welcome from './views/welcome.js';
 import principalRegister from './views/principalRegister.js';
 import registerData from './views/registerData.js';
-import registerPassword from './views/registerPassword.js';
 import error from './views/error.js';
 import login from './views/login.js';
 import feed from './views/feed.js';
@@ -12,7 +11,6 @@ const routes = [
   { path: '/', component: welcome },
   { path: '/principalRegister', component: principalRegister },
   { path: '/registerData', component: registerData },
-  { path: '/registerPassword', component: registerPassword },
   { path: '/error', component: error },
   { path: '/login', component: login },
   { path: '/feed', component: feed },
