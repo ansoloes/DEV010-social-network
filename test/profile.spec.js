@@ -41,9 +41,9 @@ describe('profile', () => {
 
     expect(getPosts).toHaveBeenCalled();
 
-    // Verificar que se mostraron los posts en el DOM
+    // * check que se mostraron los posts en el DOM
     const postingArea = document.querySelector('.posting-area');
-    expect(postingArea.children.length).toBe(mockPosts.length);
+    expect(postingArea.children).toHaveLength(mockPosts.length);
   });
 
   it('debería mostrar el perfil del usuario correctamente', () => {
