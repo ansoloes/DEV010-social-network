@@ -1,5 +1,4 @@
 import { addPost } from '../lib/index.js';
-import { auth } from '../lib/firebaseConfig.js';
 //* Footer
 function navBar(navigateTo, postingArea) {
   const footerElement = document.createElement('footer');
@@ -41,7 +40,6 @@ function navBar(navigateTo, postingArea) {
     dialog.appendChild(btndialog);
 
     btndialog.addEventListener('click', () => {
-      console.log(auth.currentUser);
       const postContent = inputPost.value.trim();
       if (postContent === '') {
         console.log('vacío');
