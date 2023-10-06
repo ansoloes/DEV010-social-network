@@ -62,11 +62,6 @@ p {
   }
 
   .contenedor-carrusel {
-    width: 100%;
-    height: 84.5vh;
-  }
-
-  .contenedor-carrusel {
     position: relative;
     max-width: 100%;
     max-height: 84.5vh;
@@ -117,7 +112,12 @@ p {
     transition: opacity ease 250ms;
   }
 
-  .nav-carrusel a {
+  .contenedor-btn a {
+    text-decoration: none;
+    color: var(--color-principal);
+  }
+
+  .nav-carrusel a:active {
     opacity: 1;
   }
 
@@ -295,11 +295,6 @@ p {
     border-top: .1rem solid var(--gris);
   }
 
-  .contenedor-btn a {
-    text-decoration: none;
-    color: var(--color-principal);
-  }
-
   #signUp {
     padding: 1.4rem;
     width: 100%;
@@ -331,11 +326,6 @@ p {
     border-radius: 50%;
   }
    
-  .form-datos input {
-    padding: 1.2rem;
-    border: .1rem solid var(--gris);
-    border-radius: .8rem;
-  }
   /* * Fin Vista 4 */
 
   /* * Vista 5 */
@@ -470,6 +460,8 @@ p {
 }
 
 .profile-image {
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
 }
 
@@ -512,12 +504,6 @@ p {
   box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
 }
 
-.profile-image {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-}
-
 .actions {
   position: absolute;
   top: 10px;
@@ -542,8 +528,13 @@ p {
   right: 10px;
 }
 
-.like-button .fa-paw {
-  color: #EC7B67; /* Cambia el color del icono de la pata según tu preferencia */
+#like {
+  color: var(--fuente); /* Cambia el color del icono de la pata según tu preferencia */
+  font-size: 2.4rem;
+}
+
+#like-active {
+  color: var(--color-acento);
   font-size: 2.4rem;
 }
 
@@ -566,6 +557,13 @@ p {
   color: #00297B;
 }
 
+.footer-button {
+  background-color: transparent;
+  border: none;
+  color: #0077B1;
+  font-size: 30px;
+}
+
 .footer-button:active {
   opacity: 0.7; /* Puedes ajustar la opacidad según tus preferencias */
 }
@@ -586,14 +584,7 @@ p {
 #house-icon {
   color:#0077B1; /* Cambia el color según tu preferencia */
 }
-.footer-button {
-  background-color: transparent;
-  border: none;
-  color: #0077B1;
-  font-size: 30px;
-  
-  /* Ajusta el valor negativo según sea necesario para mover a la izquierda */
-}
+
 .footer-home {
   background-color: transparent;
   border: none;
@@ -601,12 +592,14 @@ p {
   font-size: 30px;
    /* Ajusta el valor negativo según sea necesario para mover a la izquierda */
 }
+
 .footer-home:active {
   opacity: 0.7; /* Puedes ajustar la opacidad según tus preferencias */
 }
-.footer-button:hover {
+
+/* .footer-button:hover {
   text-decoration: underline;
-}
+} */
 
 .footer-profile {
   display: flex;
@@ -614,13 +607,7 @@ p {
    /* Centra verticalmente */
   justify-content: center; 
 }
-.footer-button:profile {
-  opacity: 0.7; /* Puedes ajustar la opacidad según tus preferencias */
-}
 
-.profile-button:active {
-  opacity: 0.7;
-}
 .profile-button {
   background-color: #EC7B67; /* Color de fondo */
   position: relative;
@@ -636,7 +623,17 @@ p {
   justify-content: center; /* Centramos horizontalmente */
    /* Ajustamos la posición desde abajo */
 }
+
+.profile-button:active {
+  opacity: 0.7;
+}
+
 .posting-area{
+  width: 100%;
+  flex-direction: column;
+  overflow-y: auto;
+  padding-top: 2rem;
+  margin:0;
   display: flex;
   justify-items: center;
   align-items: center;
@@ -666,13 +663,6 @@ p {
   top: 45.4rem;
 }
 
-.posting-area {
-  width: 100%;
-  flex-direction: column;
-  overflow-y: auto;
-  padding-top: 2rem;
-  margin:0;
-}
 .posting-area textarea{
   width: 32rem;
   resize: none;
