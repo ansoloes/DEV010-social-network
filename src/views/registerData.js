@@ -91,7 +91,7 @@ function registerData(navigateTo) {
           })
           .finally(() => {
           // Ve a la siguiente vista
-            navigateTo('/registerPassword');
+            navigateTo('/login');
           });
       })
       .catch((error) => {

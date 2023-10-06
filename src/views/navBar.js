@@ -28,12 +28,14 @@ function navBar(navigateTo, postingArea) {
     const inputCont = document.createElement('div');
     const inputPost = document.createElement('textarea');
     inputPost.className = 'input-post-textarea';
+    inputPost.placeholder = 'Escribe el post aquí...';
     const btndialog = document.createElement('button');
     btndialog.innerHTML = 'Publicar';
     btndialog.className = 'btn-principal';
     btndialog.id = 'btn-submit-post';
 
     const btnCloseDialog = document.createElement('button');
+    btnCloseDialog.classList = 'btn-close-dialog';
     const iconX = document.createElement('i');
     iconX.classList = 'fa-solid fa-x';
     btnCloseDialog.appendChild(iconX);
