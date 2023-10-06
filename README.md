@@ -2,9 +2,9 @@
 
 Es una red social para compartir con Amigos,Familia entre otros, tus bellos momentos y experiencias con tus mascotas.
 
-<p align="center">
-<img src="img/logo.png" alt="LOGO">
-</p>
+
+![onlypawslogo](src/img/logo.png)
+
 
 ## Descripción de la App
 
@@ -43,15 +43,13 @@ La app fue construida como SPA y es responsive.
 
 ### FEED
 
-<p align="center">
-<img src="img/feed.JPG" alt="LOGO">
-</p>
+![feed](src/img/feed.JPG)
 
 ### PERFIL
 
-<p align="center">
-<img src="img/perfil.JPG" alt="LOGO">
-</p>
+![perfil](src/img/perfil.JPG)
+
+
 
 ## Planificación:
 
