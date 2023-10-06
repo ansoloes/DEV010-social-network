@@ -61,7 +61,7 @@ hr {
 */
 
 pre {
-    font-family: monospace, monospace;
+    font-family: monospace, sans-serif;
     /* 1 */
     font-size: 1em;
     /* 2 */
@@ -107,7 +107,7 @@ strong {
 code,
 kbd,
 samp {
-    font-family: monospace, monospace;
+    font-family: monospace, sans-serif;
     /* 1 */
     font-size: 1em;
     /* 2 */
