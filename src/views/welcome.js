@@ -1,6 +1,5 @@
 // file welcome.js
-function welcome(navigateTo){
-  
+function welcome(navigateTo) {
   const mainElement = document.createElement('main');
   mainElement.className = 'main-1';
 
@@ -41,7 +40,6 @@ function welcome(navigateTo){
     navigateTo('/principalRegister');
   });
 
-  
   divElement.appendChild(buttonElement);
 
   mainElement.appendChild(sectionElement);
@@ -49,5 +47,5 @@ function welcome(navigateTo){
   return mainElement;
   // Agregar la vista al body
   // document.body.appendChild(mainElement);
-};
+}
 export default welcome;

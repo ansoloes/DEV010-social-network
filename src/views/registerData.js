@@ -1,17 +1,17 @@
-import {createUserWithEmailAndPassword, updateProfile, updateCurrentUser} from "firebase/auth";
-import {doc, setDoc} from "firebase/firestore";
-import { auth, db } from "../lib/firebaseConfig.js";
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
+import { auth, db } from '../lib/firebaseConfig.js';
 
 const updateName = async (completeUserName) => {
   await updateProfile(auth.currentUser, { displayName: completeUserName });
 };
 
-// file registerData.js
+// *file registerData.js
 function registerData(navigateTo) {
   const mainElement = document.createElement('main');
   mainElement.className = 'main-3';
 
-  // Formulario 1: Datos personales
+  //* Formulario 1: Datos personales
   const formDatos = document.createElement('form');
   formDatos.action = '';
   formDatos.className = 'form-datos';
@@ -30,8 +30,7 @@ function registerData(navigateTo) {
   formDatos.appendChild(inputNombre);
   formDatos.appendChild(inputCorreo);
 
-
-  // Formulario 2: Asignar contraseña y repetir
+  //* Formulario 2: Asignar contraseña y repetir
   const formDatos2 = document.createElement('form');
   formDatos2.action = '';
   formDatos2.className = 'form-datos';
@@ -50,7 +49,7 @@ function registerData(navigateTo) {
   formDatos2.appendChild(inputContraseñaNueva);
   formDatos2.appendChild(inputRepetirContraseña);
 
-  // Botones
+  //* Botones
   const contenedorBtn = document.createElement('div');
   contenedorBtn.className = 'contenedor-btn';
 
@@ -61,7 +60,6 @@ function registerData(navigateTo) {
   btnContinuar.innerHTML = 'Continuar';
 
   btnContinuar.addEventListener('click', () => {
-
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
@@ -69,42 +67,39 @@ function registerData(navigateTo) {
 
     if (password !== confirmPassword) {
       alert('Las contraseñas no coinciden. Por favor, inténtalo de nuevo.');
-      return; // Detener la función si las contraseñas no coinciden
+      return; //! Detener la función si las contraseñas no coinciden
     }
 
     createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
+      .then((userCredential) => {
+        const user = userCredential.user;
 
-      const userDocRef = doc(db, 'users', user.uid);
-      const userData = {
-        email: email,
-        username: username, 
-        password: password,
-      };
-      
-      return setDoc(userDocRef, userData)
-        .then(() => {
-          return updateName(username);
-        })
-        .then(() => {
-          alert('Usuario creado exitosamente.');
-        })
-        .catch((error) => {
-          console.error('Error al almacenar datos en Firestore:', error);
-        })
-        .finally(() => {
+        const userDocRef = doc(db, 'users', user.uid);
+        const userData = {
+          email,
+          username,
+          password,
+        };
+
+        return setDoc(userDocRef, userData)
+          .then(() => updateName(username))
+          .then(() => {
+            alert('Usuario creado exitosamente.');
+          })
+          .catch((error) => {
+            console.error('Error al almacenar datos en Firestore:', error);
+          })
+          .finally(() => {
           // Ve a la siguiente vista
-          navigateTo('/registerPassword');
-        });
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // Handle errors 
-      alert(errorMessage);
-    });
-
+            navigateTo('/registerPassword');
+          });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // Handle errors
+        alert(errorMessage, errorCode);
+      });
   });
 
   const linkIniciarSesion = document.createElement('a');
@@ -114,16 +109,15 @@ function registerData(navigateTo) {
   linkIniciarSesion.addEventListener('click', () => {
     navigateTo('/login');
   });
-  
+
   contenedorBtn.appendChild(btnContinuar);
   contenedorBtn.appendChild(linkIniciarSesion);
 
   mainElement.appendChild(formDatos);
   mainElement.appendChild(formDatos2);
-  // mainElement.appendChild(contenedorSeleccionMascota);
   mainElement.appendChild(contenedorBtn);
 
   return mainElement;
-};
+}
 
 export default registerData;

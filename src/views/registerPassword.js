@@ -1,5 +1,5 @@
 // file registerPassword.js
-function registerPassword (navigateTo){
+function registerPassword(navigateTo) {
   const mainElement = document.createElement('main');
   mainElement.className = 'main-4';
 
@@ -20,7 +20,7 @@ function registerPassword (navigateTo){
   labelFecha.textContent = 'Fecha de nacimiento o de adopción de la mascota';
 
   const contenedorFecha = document.createElement('div');
-  contenedorFecha.className = 'contenedor-fecha'
+  contenedorFecha.className = 'contenedor-fecha';
 
   const inputDia = document.createElement('input');
   inputDia.type = 'text';
@@ -112,13 +112,13 @@ function registerPassword (navigateTo){
   contenedorBtn.appendChild(btnRegistrarse);
 
   mainElement.appendChild(contenedorIlustracionContraseña);
-  mainElement.appendChild(formFecha)
-  mainElement.appendChild(articleSeleccionMascota)
+  mainElement.appendChild(formFecha);
+  mainElement.appendChild(articleSeleccionMascota);
   mainElement.appendChild(contenedorBtn);
 
   return mainElement;
   // // Agregar la vista al body
   // document.body.appendChild(mainElement);
-};
+}
 
 export default registerPassword;

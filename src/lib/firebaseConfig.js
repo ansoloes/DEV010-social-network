@@ -20,11 +20,10 @@ const firebaseConfig = {
 // Inicializar Firebase
 const app = initializeApp(firebaseConfig);
 
-//Apps
+// Apps
 const auth = getAuth(app);
 // Es importante utilizar FireStore, pues es parte de los Objetivos de aprendizaje
 const db = getFirestore(app);
-
 
 // exporto lo que usarás después
 export {

@@ -5,7 +5,7 @@ import registerPassword from './views/registerPassword.js';
 import error from './views/error.js';
 import login from './views/login.js';
 import feed from './views/feed.js';
-import forgotPassword from './views/forgotPassword.js'
+import forgotPassword from './views/forgotPassword.js';
 import profile from './views/profile.js';
 
 const routes = [
@@ -23,12 +23,11 @@ const routes = [
 const defaultRoute = '/';
 
 const root = document.getElementById('root');
-console.log(root)
-
+console.log(root);
 
 function navigateTo(hash) {
   const route = routes.find((routeFound) => routeFound.path === hash);
-  
+
   if (route && route.component) {
     window.history.pushState(
       {},
@@ -41,7 +40,7 @@ function navigateTo(hash) {
     }
 
     root.appendChild(route.component(navigateTo));
-   } else {
+  } else {
     navigateTo('/error');
   }
 }
