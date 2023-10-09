@@ -44,7 +44,7 @@ function navBar(navigateTo, postingArea) {
     btnCloseDialog.appendChild(iconX);
     dialog.appendChild(btnCloseDialog);
 
-    // El boton publicar debería trigerear la función add post con el contenido
+    // El boton publicar debería gatillan la función add post con el contenido
     // dialog.appendChild(btnSalir);
     dialog.appendChild(inputCont);
     inputCont.appendChild(inputPost);
@@ -60,6 +60,7 @@ function navBar(navigateTo, postingArea) {
       } else {
         console.log('Hay contenido');
         addPost(inputPost.value);
+        dialog.close();
       }
     });
 

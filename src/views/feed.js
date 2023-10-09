@@ -28,6 +28,7 @@ function feed(navigateTo) {
       const welcomeMessage = document.createElement('p');
       welcomeMessage.className = 'welcome-message';
       welcomeMessage.textContent = `Bienvenido/a, ${user.displayName}`;
+      welcomeMessage.setAttribute('data-testid', 'welcome');
 
       profileContainer.appendChild(profileImage);
       profileContainer.appendChild(welcomeMessage);

@@ -3,7 +3,7 @@
  */
 /* eslint-disable no-unused-vars */
 // feed.test.js
-import { onAuthStateChanged } from 'firebase/auth';
+import { getAllByAltText, getByTestId } from '@testing-library/dom';
 import feed from '../src/views/feed';
 
 // Mock de firebase auth
@@ -24,18 +24,25 @@ const navigateToMock = jest.fn();
 
 describe('feed', () => {
   // Mock de elementos del DOM
-  let mainElement;
   let postingArea;
-  let footerElement;
 
   beforeEach(() => {
     // Crear elementos simulados del DOM
-    mainElement = document.createElement('main');
     postingArea = document.createElement('section');
-    footerElement = document.createElement('footer');
   });
 
   afterEach(() => {
     jest.clearAllMocks();
+  });
+  it('debería dar bienvenida al usuario con su displayName', () => {
+    const user = {
+      displayName: 'Usuario Prueba',
+      email: 'prueba@gmail.com',
+      uid: 'GDuTccfHlHRvDffZM1Ctd1t0wtE2',
+    };
+    const mainElement = feed(navigateToMock);
+    const welcomeMesage = getByTestId(mainElement, 'welcome');
+
+    expect(welcomeMesage.textContent).toContain(user.displayName.value);
   });
 });
