@@ -19,20 +19,24 @@ function navBar(navigateTo, postingArea) {
   pawIcon.className = 'fa-solid fa-paw';
   pawIcon.id = 'profile-icon';
 
+  pawIcon.setAttribute('data-testid', 'profile-icon');
+
   pawIcon.addEventListener('click', () => {
     // TODO: Acá debería usar la función AddPost
     const dialog = document.createElement('dialog');
-    dialog.show();
+
     dialog.className = 'dialog-posting';
+    dialog.setAttribute('data-testid', 'dialog');
 
     const inputCont = document.createElement('div');
     const inputPost = document.createElement('textarea');
     inputPost.className = 'input-post-textarea';
-    inputPost.placeholder = 'Escribe el post aquí...';
+    inputPost.setAttribute('data-testid', 'post-textarea');
     const btndialog = document.createElement('button');
     btndialog.innerHTML = 'Publicar';
     btndialog.className = 'btn-principal';
     btndialog.id = 'btn-submit-post';
+    btndialog.setAttribute('data-testid', 'btn-submit-post');
 
     const btnCloseDialog = document.createElement('button');
     btnCloseDialog.classList = 'btn-close-dialog';
@@ -41,12 +45,13 @@ function navBar(navigateTo, postingArea) {
     btnCloseDialog.appendChild(iconX);
     dialog.appendChild(btnCloseDialog);
 
-    // El boton publicar debería trigerear la función add post con el contenido
+    // El boton publicar debería gatillan la función add post con el contenido
     // dialog.appendChild(btnSalir);
     dialog.appendChild(inputCont);
     inputCont.appendChild(inputPost);
     dialog.appendChild(btndialog);
-
+    postingArea.appendChild(dialog);
+    dialog.show();
     btndialog.addEventListener('click', () => {
       const postContent = inputPost.value.trim();
       if (postContent === '') {
@@ -55,10 +60,8 @@ function navBar(navigateTo, postingArea) {
         console.log(dialog.open);
       } else {
         console.log('Hay contenido');
-
-        addPost(inputPost.value).then(() => {
-          dialog.close();
-        });
+        addPost(inputPost.value);
+        dialog.close();
       }
     });
 
