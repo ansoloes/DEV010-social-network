@@ -15,7 +15,7 @@ const addPost = async (post) => {
   if (user) {
     const name = user.displayName;
     const userID = user.uid;
-    const date = Timestamp.now().toDate().toLocaleString();
+    const date = Timestamp.now();
     const postsCollection = collection(db, 'posts');
     await addDoc(postsCollection, {
       name,
@@ -212,7 +212,6 @@ const updateDisplayName = async (newDisplayName) => {
 };
 
 const showPosts = async (array, postingArea) => {
-  // Limpiar el contenedor para evitar los duplicados
   postingArea.innerHTML = '';
   // eslint-disable-next-line max-len
   // Aplica la función de hacer elementos para cada elemento del array generando los elementos de posts y agregandolos al postArea
@@ -224,11 +223,8 @@ const showPosts = async (array, postingArea) => {
 
 const showMyPosts = async (posts, postingArea) => {
   const user = auth.currentUser;
-
   const myPosts = posts.filter((post) => post.userID === user.uid);
-
   postingArea.innerHTML = '';
-
   myPosts.forEach((post) => {
     const postElement = createPostElement(post);
     postingArea.appendChild(postElement);

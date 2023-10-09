@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { setDoc } from 'firebase/firestore';
 import registerData from '../src/views/registerData';
@@ -21,7 +25,7 @@ describe('registerData', () => {
 
   it('debería registrar un usuario correctamente y redirigir', async () => {
     // simular que llamo createUserWithEmailAndPassword
-    jest.spyOn(window, 'createUserWithEmailAndPassword').mockImplementation(() => Promise.resolve({ user: { uid: 'user123' } }));
+    jest.spyOn(window, createUserWithEmailAndPassword).mockImplementation(() => Promise.resolve({ user: { uid: 'user123' } }));
     // simularque llamo a setDoc
     jest.spyOn(window, 'setDoc').mockImplementation(() => Promise.resolve());
     // simular que llamo a updateProfile

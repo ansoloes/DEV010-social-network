@@ -1,3 +1,11 @@
+/**
+ * @jest-environment jsdom
+ */
+import {
+  fireEvent,
+  getByTestId,
+} from '@testing-library/dom';
+
 import navBar from '../src/views/navBar';
 
 describe('navBar', () => {
@@ -8,6 +16,8 @@ describe('navBar', () => {
     // Enviroment de prueba
     navigateToMock = jest.fn();
     postingArea = document.createElement('div');
+    window.HTMLDialogElement.prototype.show = jest.fn();
+    window.HTMLDialogElement.prototype.close = jest.fn();
   });
 
   afterEach(() => {
@@ -25,39 +35,36 @@ describe('navBar', () => {
     expect(navigateToMock).toHaveBeenCalledWith('/feed');
   });
 
-  it('debería mostrar un cuadro de diálogo para publicar un post al hacer clic en el botón de perfil', () => {
+  it('debería mostrar un cuadro de diálogo para publicar un post al hacer click en el botón paw', () => {
     const footerElement = navBar(navigateToMock, postingArea);
     document.body.appendChild(footerElement);
 
-    const pawIcon = document.querySelector('#profile-icon');
-    pawIcon.click();
+    const pawIcon = getByTestId(footerElement, 'profile-icon');
+    fireEvent.click(pawIcon);
 
-    const dialog = document.querySelector('.dialog-posting');
+    const dialog = getByTestId(postingArea, 'dialog');
+
     expect(dialog).toBeTruthy();
   });
 
-  it('debería agregar un post cuando se hace clic en el botón "Publicar"', () => {
+  it('debería agregar un post cuando se hace clic en el botón "Publicar"', async () => {
+    const addPost = jest.fn((post) => {
+      console.log('addPost fue llamado con:', post);
+      return Promise.resolve(post);
+    });
     const footerElement = navBar(navigateToMock, postingArea);
     document.body.appendChild(footerElement);
 
-    const pawIcon = document.querySelector('#profile-icon');
-    pawIcon.click();
+    const pawIcon = getByTestId(footerElement, 'profile-icon');
+    fireEvent.click(pawIcon);
+    const dialog = getByTestId(postingArea, 'dialog');
+    const inputPost = getByTestId(dialog, 'post-textarea');
+    const btnSubmitPost = getByTestId(dialog, 'btn-submit-post');
 
-    const dialog = document.querySelector('.dialog-posting');
-    const inputPost = dialog.querySelector('.input-post-textarea');
-    const btnSubmitPost = dialog.querySelector('#btn-submit-post');
-
-    inputPost.value = 'Nuevo post de prueba';
-    btnSubmitPost.click();
-
-    // simular addPost y check si se llamo
-    const addPostSpy = jest.spyOn(window, 'addPost');
-    expect(addPostSpy).toHaveBeenCalledWith('Nuevo post de prueba');
-
-    // restaurar funcion normal
-    addPostSpy.mockRestore();
+    fireEvent.change(inputPost, { target: { value: 'Nuevo post de prueba' } });
+    fireEvent.click(btnSubmitPost);
+    await expect(addPost).toHaveBeenCalledWith('Nuevo post de prueba');
   });
-
   it('debería llamar a navigateTo al hacer clic en el botón Dog', () => {
     const footerElement = navBar(navigateToMock, postingArea);
     document.body.appendChild(footerElement);

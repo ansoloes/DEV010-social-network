@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import principalRegister from '../src/views/principalRegister';
 
 describe('principalRegister', () => {
