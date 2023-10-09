@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import error from '../src/views/error';
 
 describe('Función error', () => {

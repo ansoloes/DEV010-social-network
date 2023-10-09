@@ -24,6 +24,7 @@ function login(navigateTo) {
   inputCorreoElectronico.type = 'text';
   inputCorreoElectronico.name = 'correo';
   inputCorreoElectronico.id = 'correo';
+  inputCorreoElectronico.setAttribute('data-testid', 'login-correo');
 
   const labelContraseña = document.createElement('label');
   labelContraseña.textContent = 'Ingresa tu contraseña:';
@@ -33,6 +34,7 @@ function login(navigateTo) {
   inputContraseña.type = 'password';
   inputContraseña.name = 'contraseña';
   inputContraseña.id = 'contraseña';
+  inputContraseña.setAttribute('data-testid', 'login-contraseña');
 
   formDatos.appendChild(labelCorreoElectronico);
   formDatos.appendChild(inputCorreoElectronico);
@@ -72,6 +74,7 @@ function login(navigateTo) {
   const btnIniciarSesion = document.createElement('button');
   btnIniciarSesion.className = 'btn-principal';
   btnIniciarSesion.textContent = 'Iniciar Sesión';
+  btnIniciarSesion.setAttribute('data-testid', 'btn-login');
 
   btnIniciarSesion.addEventListener('click', async () => {
     const email = document.getElementById('correo').value;

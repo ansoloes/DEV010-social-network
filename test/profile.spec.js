@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import { signOut } from 'firebase/auth';
 import profile from '../src/views/profile';
 import { getPosts } from '../src/lib/index.js';

@@ -1,12 +1,13 @@
+/**
+ * @jest-environment jsdom
+ */
 import forgotPassword from '../src/views/forgotPassword';
 
 // Mock Firebase
 jest.mock('firebase/auth', () => ({
   sendPasswordResetEmail: jest.fn(),
 }));
-jest.mock('../lib/firebaseConfig.js', () => ({
-  auth: {},
-}));
+jest.mock('../lib/firebaseConfig.js');
 
 // Mock navegación
 const navigateToMock = jest.fn();
