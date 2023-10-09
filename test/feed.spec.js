@@ -3,13 +3,13 @@
  */
 /* eslint-disable no-unused-vars */
 // feed.test.js
-import { getAllByAltText, getByTestId } from '@testing-library/dom';
+
+import { getByTestId } from '@testing-library/dom';
 import feed from '../src/views/feed';
 
 // Mock de firebase auth
 jest.mock('firebase/auth', () => ({
   signOut: jest.fn(),
-  onAuthStateChanged: jest.fn(),
   getAuth: jest.fn(),
 }));
 
@@ -40,9 +40,12 @@ describe('feed', () => {
       email: 'prueba@gmail.com',
       uid: 'GDuTccfHlHRvDffZM1Ctd1t0wtE2',
     };
-    const mainElement = feed(navigateToMock);
+    const mainElement = feed(navigateToMock, user);
     const welcomeMesage = getByTestId(mainElement, 'welcome');
 
-    expect(welcomeMesage.textContent).toContain(user.displayName.value);
+    const profileContainer = document.createElement('div');
+    profileContainer.id = 'profile-container';
+
+    expect(welcomeMesage.textContent).toContain('Bienvenido/a, Usuario Prueba');
   });
 });

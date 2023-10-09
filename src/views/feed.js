@@ -1,9 +1,9 @@
-import { signOut, onAuthStateChanged } from 'firebase/auth';
+import { signOut } from 'firebase/auth';
 import { showPosts, getPosts } from '../lib/index.js';
 import navBar from './navBar.js';
 import { auth } from '../lib/firebaseConfig.js';
 
-function feed(navigateTo) {
+function feed(navigateTo, user) {
   const mainElement = document.createElement('main');
   mainElement.className = 'main-8';
 
@@ -21,19 +21,19 @@ function feed(navigateTo) {
   profileImage.src = 'img/dueña.jpg';
   profileImage.alt = 'Profile Picture';
   profileImage.className = 'profile-image';
+  const welcomeMessage = document.createElement('p');
+  welcomeMessage.className = 'welcome-message';
+  welcomeMessage.textContent = `Bienvenido/a, ${user.displayName}`;
+  welcomeMessage.setAttribute('data-testid', 'welcome');
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      console.log(user);
-      const welcomeMessage = document.createElement('p');
-      welcomeMessage.className = 'welcome-message';
-      welcomeMessage.textContent = `Bienvenido/a, ${user.displayName}`;
-      welcomeMessage.setAttribute('data-testid', 'welcome');
+  profileContainer.appendChild(profileImage);
+  profileContainer.appendChild(welcomeMessage);
 
-      profileContainer.appendChild(profileImage);
-      profileContainer.appendChild(welcomeMessage);
-    }
-  });
+  // onAuthStateChanged(auth, (user) => {
+  //   if (user) {
+  //     console.log(user);
+  //   }
+  // });
 
   const logoutButton = document.createElement('button');
   logoutButton.className = 'logout-button';
