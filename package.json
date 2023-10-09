@@ -46,4 +46,5 @@
   "dependencies": {
     "firebase": "^10.3.1"
   }
+  
 }
