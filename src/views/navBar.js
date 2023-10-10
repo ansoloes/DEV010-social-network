@@ -39,6 +39,7 @@ function navBar(navigateTo, postingArea) {
     btndialog.setAttribute('data-testid', 'btn-submit-post');
 
     const btnCloseDialog = document.createElement('button');
+    btnCloseDialog.classList = 'btn-close-dialog';
     const iconX = document.createElement('i');
     iconX.classList = 'fa-solid fa-x';
     btnCloseDialog.appendChild(iconX);

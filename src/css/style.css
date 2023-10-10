@@ -108,17 +108,13 @@ p {
     height: 1.2rem;
     border-radius: 50%;
     background-color: var(--blanco);
-    opacity: 0.1;
+    opacity: 0.8;
     transition: opacity ease 250ms;
   }
 
   .contenedor-btn a {
     text-decoration: none;
     color: var(--color-principal);
-  }
-
-  .nav-carrusel a:active {
-    opacity: 1;
   }
 
   .contenedor-btn {
@@ -508,10 +504,11 @@ p {
   position: absolute;
   top: 10px;
   right: 10px;
+  display: flex;
 }
 
 .action-button {
-  background-color: #FFFFFF;
+  background-color: transparent;
   border: none;
   cursor: pointer;
 }
@@ -555,6 +552,7 @@ p {
 
 .post-text {
   color: #00297B;
+  margin-right: 3.2rem;
 }
 
 .footer-button {
@@ -638,20 +636,7 @@ p {
   justify-items: center;
   align-items: center;
 }
-.dialog-posting i{
-  align-self: center;
-  left: 45%;
-  top: 5%;
-  width: 3.2rem;
-  height: 3.2rem;
-  background-color: #AFDEED;
-  border-radius: 100%;
-  text-align: center;
-  line-height: 3.2rem;
-  position: relative;
-  color:#00297b;
-  font-size: x-large;
-}
+
 .dialog-posting {
   position:absolute;
   flex-direction: column;
@@ -661,14 +646,47 @@ p {
   border-radius: 1.2rem;
   border: none;
   top: 45.4rem;
+  -webkit-box-shadow: 5px -5px 15px -5px rgba(0,0,0,0.35);
+  -moz-box-shadow: 5px -5px 15px -5px rgba(0,0,0,0.35);
+  box-shadow: 5px -5px 15px -5px rgba(0,0,0,0.35);
+}
+
+.dialog-posting i{
+  align-self: center;
+  left: 45%;
+  top: 5%;
+  width: 3.2rem;
+  background-color: #AFDEED;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 3.2rem;
+  position: relative;
+  color:#00297b;
+  font-size: x-large;
+}
+
+
+.btn-close-dialog {
+  background-color: transparent;
+  border: none;
+  position: relative;
+  left: 85%;
 }
 
 .posting-area textarea{
-  width: 32rem;
+  width: 100%;
   resize: none;
+  border: none;
 }
+
 .posting-area textarea:hover{
   background-color: #eeeeee;
+}
+
+.posting-area textarea:focus {
+  border: none;
+  outline: none;
+  background-color: transparent;
 }
 
 /* main- 9 */

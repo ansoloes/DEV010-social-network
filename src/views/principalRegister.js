@@ -1,4 +1,5 @@
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+
 import { auth } from '../lib/firebaseConfig';
 // acá deben traer las partes de firebaseconfig que les sirvan ( en este caso db y auth)
 // file principalRegister.js

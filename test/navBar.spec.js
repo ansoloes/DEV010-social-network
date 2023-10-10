@@ -7,6 +7,7 @@ import {
 } from '@testing-library/dom';
 
 import navBar from '../src/views/navBar';
+import * as index from '../src/lib/index'
 
 describe('navBar', () => {
   let navigateToMock;
@@ -47,11 +48,12 @@ describe('navBar', () => {
     expect(dialog).toBeTruthy();
   });
 
-  it('debería llamarse la función addPost al apretar "Publicar"', async () => {
-    const addPost = jest.fn((post) => {
-      console.log('addPost fue llamado con:', post);
+  it('debería agregar un post cuando se hace clic en el botón "Publicar"', async () => {
+    jest.spyOn(index, 'addPost').mockImplementation((post) => {
+      console.log('addPost fue llamado con: ', post);
       return Promise.resolve(post);
     });
+
     const footerElement = navBar(navigateToMock, postingArea);
     document.body.appendChild(footerElement);
 
@@ -63,7 +65,7 @@ describe('navBar', () => {
 
     fireEvent.change(inputPost, { target: { value: 'Nuevo post de prueba' } });
     fireEvent.click(btnSubmitPost);
-    await expect(addPost).toHaveBeenCalledWith('Nuevo post de prueba');
+    await expect(index.addPost).toHaveBeenCalledWith('Nuevo post de prueba');
   });
   it('debería llamar a navigateTo al hacer clic en el botón Dog', () => {
     const footerElement = navBar(navigateToMock, postingArea);
