@@ -47,7 +47,7 @@ describe('navBar', () => {
     expect(dialog).toBeTruthy();
   });
 
-  it('debería agregar un post cuando se hace clic en el botón "Publicar"', async () => {
+  it('debería llamarse la función addPost al apretar "Publicar"', async () => {
     const addPost = jest.fn((post) => {
       console.log('addPost fue llamado con:', post);
       return Promise.resolve(post);
