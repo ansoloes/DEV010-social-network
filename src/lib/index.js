@@ -21,7 +21,7 @@ const addPost = async (post) => {
       name,
       date,
       post,
-      userID, // Almacenar el ID del usuario para poder reconocer los propios
+      userID, // Almacenar el ID del usuario para poder reconocer los post propios
       like: [],
     });
   } else {
